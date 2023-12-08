@@ -13,4 +13,5 @@ export enum LocalizationKey {
   ON3_QUOTE = "Flavorly Let's cook!",
   ON3_SUBQUOTE = `Choose your favorite recipe \n Flavorly is ready!`,
   NEXT = "Next",
+  MY_FAVORITE = "My favorite recipes"
 }

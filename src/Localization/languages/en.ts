@@ -15,4 +15,5 @@ export const en = {
   [LocalizationKey.ON3_QUOTE]: "Flavorly. Let's cook!",
   [LocalizationKey.ON3_SUBQUOTE]: `Choose your favorite recipe \n Flavorly is ready!`,
   [LocalizationKey.NEXT]: "Next",
+  [LocalizationKey.MY_FAVORITE]: "My favorite recipes"
 };
