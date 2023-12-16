@@ -30,6 +30,7 @@ export const OnboardingItem = ({ item }: { item: OnboardingItemType }) => {
           <View style={styles.innerCirlce}>
             <RotateDot radius={313 / 2} color={"#FFE7BB"} speed={6000} />
             <RotateDot radius={313 / 2} color={"#FFC861"} speed={5000} />
+            <View style={styles.illustratorBackground}></View>
             <Image source={item.illustrator} />
           </View>
           <RotateDot radius={443 / 2} color={"#8981AE"} speed={4000} />
@@ -91,5 +92,13 @@ const styles = StyleSheet.create({
     height: 443,
     width: 443,
     borderRadius: 443 / 2,
+  },
+  illustratorBackground: {
+    position: "absolute",
+    top: (313 - 177) / 2,
+    height: 177,
+    width: 177,
+    borderRadius: 177 / 2,
+    backgroundColor: "#FFD7C0",
   },
 });

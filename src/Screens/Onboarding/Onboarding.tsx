@@ -104,7 +104,7 @@ export const Onboarding = (props: {
               ]}
             >
               {currentIndex === slides.length - 1
-                ? "Bắt đầu với Flavorly thôi"
+                ? "Bắt đầu với Flavorly"
                 : "Tiếp theo"}
             </Text>
           </TouchableOpacity>
@@ -124,7 +124,12 @@ export const Onboarding = (props: {
                 Hoặc bắt đầu với Flavorly ngay!
               </Text>
             </View>
-            <ArrowForwardIcon size="18px" color="white" />
+            <ArrowForwardIcon
+              size="18px"
+              color={
+                isFirstItem() ? styles.buttonStartInWelcomeText.color : "white"
+              }
+            />
           </TouchableOpacity>
         )}
       </View>
