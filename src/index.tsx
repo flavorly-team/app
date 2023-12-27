@@ -27,16 +27,16 @@ export default function App() {
     CormorantSC_400Regular,
   });
 
-  useEffect(() => {
-    async function prepare() {
-      await SplashScreen.preventAutoHideAsync();
-    }
+  // useEffect(() => {
+  //   async function prepare() {
+  //     await SplashScreen.preventAutoHideAsync();
+  //   }
 
-    prepare();
-  }, []);
+  //   prepare();
+  // }, []);
 
   if (!fontsLoaded) {
-    return undefined;
+    return null;
   } else {
     SplashScreen.hideAsync();
   }
