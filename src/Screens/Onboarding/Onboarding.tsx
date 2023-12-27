@@ -1,4 +1,4 @@
-import React, { ClassAttributes, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -35,7 +35,7 @@ export const Onboarding = (props: {
 
   const isFirstItem = () => currentIndex === 0;
 
-  const scrollTo = async () => {
+  const scrollTo = () => {
     if (!isLastItem()) {
       slidesRef.current?.scrollToIndex({ index: currentIndex + 1 });
     } else {

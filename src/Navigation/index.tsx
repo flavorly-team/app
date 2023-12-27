@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { StatusBar } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { MainNavigator } from "./Main";
-import { WelcomeContainer } from "@/Screens/Welcome";
 import { RootScreens } from "@/Screens";
 import { OnboardingContainer } from "../Screens/Onboarding/OnboardingContainer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -49,16 +47,16 @@ const ApplicationNavigator = () => {
   }, []);
 
   return (
-    <NavigationContainer>
-      {/* <StatusBar /> */}
-      <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        {!viewedOnboarding && (
-          <RootStack.Screen
-            name={RootScreens.ONBOARDING}
-            component={OnboardingContainer}
-          />
-        )}
-        {/* <RootStack.Screen name={RootScreens.START} component={StartContainer} />
+    viewedOnboarding !== null && (
+      <NavigationContainer>
+        <RootStack.Navigator screenOptions={{ headerShown: false }}>
+          {
+            <RootStack.Screen
+              name={RootScreens.ONBOARDING}
+              component={OnboardingContainer}
+            />
+          }
+          {/* <RootStack.Screen name={RootScreens.START} component={StartContainer} />
         <RootStack.Screen
           name={RootScreens.ONBOARDING1}
           component={Onboarding1Container}
@@ -71,17 +69,18 @@ const ApplicationNavigator = () => {
           name={RootScreens.ONBOARDING3}
           component={Onboarding3Container}
         /> */}
-        {/* <RootStack.Screen
+          {/* <RootStack.Screen
           name={RootScreens.WELCOME}
           component={WelcomeContainer}
         /> */}
-        <RootStack.Screen
-          name={RootScreens.MAIN}
-          component={MainNavigator}
-          options={{}}
-        />
-      </RootStack.Navigator>
-    </NavigationContainer>
+          <RootStack.Screen
+            name={RootScreens.MAIN}
+            component={MainNavigator}
+            options={{}}
+          />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    )
   );
 };
 
