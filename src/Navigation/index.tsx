@@ -49,16 +49,16 @@ const ApplicationNavigator = () => {
   }, []);
 
   return (
-      <NavigationContainer>
-        {/* <StatusBar /> */}
-        <RootStack.Navigator screenOptions={{ headerShown: false }}>
-          {!viewedOnboarding && (
-            <RootStack.Screen
-              name={RootScreens.ONBOARDING}
-              component={OnboardingContainer}
-            />
-          )}
-          {/* <RootStack.Screen name={RootScreens.START} component={StartContainer} />
+    <NavigationContainer>
+      {/* <StatusBar /> */}
+      <RootStack.Navigator screenOptions={{ headerShown: false }}>
+        {!viewedOnboarding && (
+          <RootStack.Screen
+            name={RootScreens.ONBOARDING}
+            component={OnboardingContainer}
+          />
+        )}
+        {/* <RootStack.Screen name={RootScreens.START} component={StartContainer} />
         <RootStack.Screen
           name={RootScreens.ONBOARDING1}
           component={Onboarding1Container}
@@ -71,17 +71,17 @@ const ApplicationNavigator = () => {
           name={RootScreens.ONBOARDING3}
           component={Onboarding3Container}
         /> */}
+        {/* <RootStack.Screen
+          name={RootScreens.WELCOME}
+          component={WelcomeContainer}
+        /> */}
         <RootStack.Screen
-            name={RootScreens.WELCOME}
-            component={WelcomeContainer}
-          />
-          <RootStack.Screen
-            name={RootScreens.MAIN}
-            component={MainNavigator}
-            options={{}}
-          />
-        </RootStack.Navigator>
-      </NavigationContainer>
+          name={RootScreens.MAIN}
+          component={MainNavigator}
+          options={{}}
+        />
+      </RootStack.Navigator>
+    </NavigationContainer>
   );
 };
 
