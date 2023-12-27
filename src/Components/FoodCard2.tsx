@@ -1,4 +1,11 @@
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { i18n, LocalizationKey } from "@/Localization";
 import { MetricsSizes } from "@/Theme/Variables";
 import { Icon } from "./Icon";
@@ -13,16 +20,18 @@ export const FoodCard2: React.FC<Props> = ({ name, cookingTime, image }) => {
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.imageContainer}>
-          <Image source={{ uri: image }} style={styles.image} />
-        </View>
-        <View style={styles.content}>
-          <Text style={styles.nameText}>{name}</Text>
-          <View style={styles.cookingTime}>
-            <Icon name="time-outline" size={16} color="#263238" />
-            <Text style={styles.cookingTimeText}>{cookingTime}</Text>
+        <Pressable onPress={() => alert("Clicked!")}>
+          <View style={styles.imageContainer}>
+            <Image source={{ uri: image }} style={styles.image} />
           </View>
-        </View>
+          <View style={styles.content}>
+            <Text style={styles.nameText}>{name}</Text>
+            <View style={styles.cookingTime}>
+              <Icon name="time-outline" size={16} color="#263238" />
+              <Text style={styles.cookingTimeText}>{cookingTime}</Text>
+            </View>
+          </View>
+        </Pressable>
       </View>
     </>
   );
@@ -38,6 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 20,
   },
   imageContainer: {
     width: windowWidth,
@@ -61,6 +71,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 16,
     color: "#263238",
+    fontFamily: "Regular",
   },
   cookingTime: {
     flexDirection: "row",
@@ -70,6 +81,7 @@ const styles = StyleSheet.create({
   cookingTimeText: {
     fontSize: 16,
     color: "#263238",
-    fontWeight: "700"
-  }
+    fontWeight: "700",
+    fontFamily: "Bold",
+  },
 });
