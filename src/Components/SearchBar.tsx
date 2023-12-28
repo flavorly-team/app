@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Dispatch, SetStateAction } from 'react';
 import { View, TextInput, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { LocalizationKey, i18n } from "@/Localization";
 
 type Props = {
   value: string;
@@ -15,7 +16,7 @@ export const SearchBar: React.FC<Props> = ({ value, onChangeText }) => {
       <Feather name="search" size={24} color="#263238" />
       <TextInput
         style={styles.searchInput}
-        placeholder="Search"
+        placeholder={i18n.t(LocalizationKey.SEARCH_FAVORITE)}
         value={value}
         onChangeText={onChangeText}
       />
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: 1,
-    fontSize: 18,
+    fontSize: 16,
     marginLeft: 10,
     fontFamily: "Regular",
     color: "#263238",

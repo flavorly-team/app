@@ -15,5 +15,7 @@ export const vi = {
   [LocalizationKey.ON3_QUOTE]: "Cùng Flavorly nấu thôi!",
   [LocalizationKey.ON3_SUBQUOTE]: `Chọn công thức bạn yêu thích nhất \n Flavorly đã sẵn sàng!`,
   [LocalizationKey.NEXT]: "Tiếp theo",
-  [LocalizationKey.MY_FAVORITE]: "Công thức yêu thích của bạn"
+  [LocalizationKey.MY_FAVORITE]: "Công thức yêu thích của bạn",
+  [LocalizationKey.NOT_FOUND]: "Không tìm thấy kết quả tìm kiếm!",
+  [LocalizationKey.SEARCH_FAVORITE]: "Tìm kiếm công thức của bạn",
 };
