@@ -16,4 +16,5 @@ export enum LocalizationKey {
   MY_FAVORITE = "My favorite recipes",
   NOT_FOUND = "Not result found",
   SEARCH_FAVORITE = "Search your favorite recipes",
+  RESULT = "Result",
 }

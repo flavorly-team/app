@@ -7,6 +7,8 @@ import { WelcomeContainer } from "@/Screens/Welcome";
 import { RootScreens } from "@/Screens";
 import { OnboardingContainer } from "../Screens/Onboarding/OnboardingContainer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ResultContainer } from "@/Screens/Result";
+import { FavoriteContainer } from "@/Screens/Favorite";
 // import { StartContainer } from "@/Screens/Start";
 // import { Onboarding1Container } from "@/Screens/Onboarding1";
 // import { Onboarding2Container } from "@/Screens/Onboarding2";
@@ -20,6 +22,8 @@ export type RootStackParamList = {
   [RootScreens.ONBOARDING1]: undefined;
   [RootScreens.ONBOARDING2]: undefined;
   [RootScreens.ONBOARDING3]: undefined;
+  [RootScreens.RESULT]: undefined;
+  [RootScreens.FAVORITE]: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -80,6 +84,8 @@ const ApplicationNavigator = () => {
           component={MainNavigator}
           options={{}}
         />
+        <RootStack.Screen name={RootScreens.RESULT} component={ResultContainer}/>
+        <RootStack.Screen name={RootScreens.FAVORITE} component={FavoriteContainer} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

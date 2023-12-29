@@ -17,6 +17,7 @@ import { SearchBar } from "@/Components/SearchBar";
 import { debounce } from "@/Utils/debounce";
 import { EmptyList } from "@/Components/EmptyList";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { RootScreens } from "..";
 
 const DATA = [
   {
@@ -48,7 +49,9 @@ type FoodCard = {
   image: string;
 };
 
-export const Favorite = () => {
+export const Favorite = (props: {
+  onNavigate: (string: RootScreens) => void;
+}) => {
   const [data, setData] = useState<Array<FoodCard> | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -77,12 +80,14 @@ export const Favorite = () => {
         setSearchData(data ? data : []);
         setIsLoading(false);
       } else {
-        const formatData = data ? data.map((item) => {
-          return {
-            ...item,
-            name: item.name.toLowerCase()
-          }
-        }) : []
+        const formatData = data
+          ? data.map((item) => {
+              return {
+                ...item,
+                name: item.name.toLowerCase(),
+              };
+            })
+          : [];
         setSearchData(
           formatData.filter((item) => item.name.includes(value.toLowerCase()))
         );
@@ -104,8 +109,6 @@ export const Favorite = () => {
         <Text style={styles.headerText}>
           {i18n.t(LocalizationKey.MY_FAVORITE)}
         </Text>
-        <Text>{searchData?.length}</Text>
-        <Text>{data?.length}</Text>
         <SearchBar value={searchTerm} onChangeText={handleSearch} />
       </View>
       {isLoading == true && (
@@ -122,6 +125,7 @@ export const Favorite = () => {
                 name={item.name}
                 cookingTime={item.cookingTime}
                 image={item.image}
+                onPress={() => props.onNavigate(RootScreens.RESULT)}
               />
             )}
             ListEmptyComponent={EmptyList}
