@@ -25,7 +25,7 @@ export const Result = (props: {
           <GoBackBtn color="#DF7861" onPress={() => props.goBack()} />
         </View>
         <View style={styles.row}>
-          <SearchBar value={searchTerm} onChangeText={handleSearch} />
+          <SearchBar placeholder={"Nhập tên"} value={searchTerm} onChangeText={handleSearch} />
         </View>
       </View>
       <View style={styles.content}></View>

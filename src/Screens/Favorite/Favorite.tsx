@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { HStack, Spinner, Heading } from "native-base";
+import { HStack, Spinner, Heading, Box } from "native-base";
 import { User } from "@/Services";
 import { FoodCard2 } from "@/Components/FoodCard2";
 import { SearchBar } from "@/Components/SearchBar";
@@ -80,16 +80,8 @@ export const Favorite = (props: {
         setSearchData(data ? data : []);
         setIsLoading(false);
       } else {
-        const formatData = data
-          ? data.map((item) => {
-              return {
-                ...item,
-                name: item.name.toLowerCase(),
-              };
-            })
-          : [];
         setSearchData(
-          formatData.filter((item) => item.name.includes(value.toLowerCase()))
+          data.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()))
         );
         setIsLoading(false);
       }
@@ -104,12 +96,12 @@ export const Favorite = (props: {
   };
 
   return (
-    <View style={styles.container}>
+    <Box pl={5} pr={5} pt={12} flex={1}>
       <View style={styles.header}>
         <Text style={styles.headerText}>
           {i18n.t(LocalizationKey.MY_FAVORITE)}
         </Text>
-        <SearchBar value={searchTerm} onChangeText={handleSearch} />
+        <SearchBar placeholder={i18n.t(LocalizationKey.SEARCH_FAVORITE)} value={searchTerm} onChangeText={handleSearch} />
       </View>
       {isLoading == true && (
         <View style={styles.scrollContainer}>
@@ -137,12 +129,42 @@ export const Favorite = (props: {
           <EmptyList />
         </View>
       )}
-    </View>
+    </Box>
+    // <View style={styles.container}>
+    // </View>
   );
 };
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#fff",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+//   header: {
+//     flex: 2,
+//     width: "100%",
+//     marginTop: 30,
+//     paddingLeft: 30,
+//     paddingRight: 30,
+//     justifyContent: "center",
+//     alignItems: "flex-start",
+//   },
+//   headerText: {
+//     fontSize: 30,
+//     color: "#DF7861",
+//     fontWeight: "700",
+//     fontFamily: "Bold",
+//   },
+//   scrollContainer: {
+//     flex: 6,
+//     width: "100%",
+//   },
+// });
 
 const styles = StyleSheet.create({
   container: {
@@ -153,11 +175,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 2,
-    width: "100%",
-    marginTop: 30,
-    paddingLeft: 30,
-    paddingRight: 30,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "flex-start",
   },
   headerText: {
@@ -168,6 +186,6 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flex: 6,
-    width: "100%",
+    marginTop: 10,
   },
 });
