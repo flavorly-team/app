@@ -21,7 +21,7 @@ export const Button: React.FC<Props> = ({
       <Pressable>
         <View style={styles.btn}>
           <Text style={[styles.btnText, {color: `${color}`}]}>{name}</Text>
-          <Icon name={iconName} size={30} color={color} />
+          <Icon name={iconName} size={25} color={color} />
         </View>
       </Pressable>
     </View>
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 16,
-    fontFamily: "Regular",
+    fontFamily: "Bold",
   },
 });

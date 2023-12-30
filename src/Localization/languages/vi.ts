@@ -19,4 +19,5 @@ export const vi = {
   [LocalizationKey.NOT_FOUND]: "Không tìm thấy kết quả tìm kiếm!",
   [LocalizationKey.SEARCH_FAVORITE]: "Tìm kiếm công thức của bạn",
   [LocalizationKey.RESULT]: "Kết quả",
+  [LocalizationKey.RECOMMEND]: "Đề xuất",
 };

@@ -30,7 +30,7 @@ export const Result = (props: {
       </View>
       <View style={styles.content}></View>
       <View style={styles.footer}>
-        <Button name="anchdswwwwderfgs" iconName="arrow-forward" color="#ffffff" bgColor="#94B49F" onPress={() => {}} />
+        <Button name={i18n.t(LocalizationKey.RECOMMEND)} iconName="arrow-forward" color="#ffffff" bgColor="#94B49F" onPress={() => {}} />
       </View>
     </View>
   );

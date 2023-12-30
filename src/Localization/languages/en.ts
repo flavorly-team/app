@@ -19,4 +19,5 @@ export const en = {
   [LocalizationKey.NOT_FOUND]: "Not result found!",
   [LocalizationKey.SEARCH_FAVORITE]: "Search your favorite recipes",
   [LocalizationKey.RESULT]: "Result",
+  [LocalizationKey.RECOMMEND]: "See a recipe",
 };
