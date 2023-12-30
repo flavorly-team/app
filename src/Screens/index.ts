@@ -1,5 +1,7 @@
 export enum RootScreens {
   MAIN = "Main",
   ONBOARDING = "Onboarding",
-  PIN = "Pin"
+  PIN = "Pin",
+  RESULT = "Result",
+  FAVORITE = "Favorite",
 }

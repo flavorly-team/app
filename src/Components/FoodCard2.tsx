@@ -14,13 +14,19 @@ type Props = {
   name: string;
   cookingTime: string;
   image: any;
+  onPress: any;
 };
 
-export const FoodCard2: React.FC<Props> = ({ name, cookingTime, image }) => {
+export const FoodCard2: React.FC<Props> = ({
+  name,
+  cookingTime,
+  image,
+  onPress,
+}) => {
   return (
     <>
       <View style={styles.container}>
-        <Pressable onPress={() => alert("Clicked!")}>
+        <Pressable onPress={onPress}>
           <View style={styles.imageContainer}>
             <Image source={{ uri: image }} style={styles.image} />
           </View>

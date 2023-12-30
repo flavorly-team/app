@@ -1,3 +1,4 @@
+import { LocalizationKey, i18n } from "@/Localization";
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
@@ -7,7 +8,7 @@ export const EmptyList = () => {
   return (
     <View style={styles.container}>
       <Image source={imageUri} style={styles.image} />
-      <Text style={styles.text}>Không tìm thấy kết quả tìm kiếm!</Text>
+      <Text style={styles.text}>{i18n.t(LocalizationKey.NOT_FOUND)}</Text>
     </View>
   );
 };
