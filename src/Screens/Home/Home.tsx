@@ -12,6 +12,7 @@ import {
   Image,
   StyleProp,
   ViewStyle,
+  SafeAreaView,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -151,8 +152,8 @@ export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
   }, []);
 
   return (
-    <>
-      <Box pl={5} pr={5} pt={12} flex={1}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <Box pl={5} pr={5} flex={1}>
         {/* <TouchableOpacity
           style={[styles.button, styles.buttonClose]}
           onPress={() => setHasCameraPermission(!hasCameraPermission)}
@@ -351,7 +352,7 @@ export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
         }
         style={styles.cameraButton}
       />
-    </>
+    </SafeAreaView>
   );
 };
 

@@ -9,6 +9,7 @@ import {
 import { i18n, LocalizationKey } from "@/Localization";
 import { MetricsSizes } from "@/Theme/Variables";
 import { Icon } from "./Icon";
+import { Box } from "native-base";
 
 type Props = {
   name: string;
@@ -27,9 +28,9 @@ export const FoodCard2: React.FC<Props> = ({
     <>
       <View style={styles.container}>
         <Pressable onPress={onPress}>
-          <View style={styles.imageContainer}>
+          <Box pl={6} pr={6}>
             <Image source={{ uri: image }} style={styles.image} />
-          </View>
+          </Box>
           <View style={styles.content}>
             <Text style={styles.nameText}>{name}</Text>
             <View style={styles.cookingTime}>
@@ -50,15 +51,14 @@ const IMAGE_WIDTH = (windowWidth * 8) / 10;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
   },
   imageContainer: {
     width: windowWidth,
-    paddingLeft: 30,
-    paddingRight: 30,
+    // paddingLeft: 30,
+    // paddingRight: 30,
   },
   image: {
     width: "100%",

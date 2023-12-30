@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { HStack, Spinner, Heading } from "native-base";
+import { Box } from "native-base";
 import { User } from "@/Services";
 import { FoodCard2 } from "@/Components/FoodCard2";
 import { SearchBar } from "@/Components/SearchBar";
@@ -104,40 +104,42 @@ export const Favorite = (props: {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>
-          {i18n.t(LocalizationKey.MY_FAVORITE)}
-        </Text>
-        <SearchBar value={searchTerm} onChangeText={handleSearch} />
-      </View>
-      {isLoading == true && (
-        <View style={styles.scrollContainer}>
-          <ActivityIndicator size="large" color="#94B49F" />
+    <SafeAreaView style={{ flex: 1 }}>
+      <Box pl={5} pr={5} flex={1}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>
+            {i18n.t(LocalizationKey.MY_FAVORITE)}
+          </Text>
+          <SearchBar value={searchTerm} onChangeText={handleSearch} />
         </View>
-      )}
-      {data != null && data.length != 0 && isLoading == false && (
-        <SafeAreaView style={styles.scrollContainer}>
-          <FlatList
-            data={searchData}
-            renderItem={({ item }) => (
-              <FoodCard2
-                name={item.name}
-                cookingTime={item.cookingTime}
-                image={item.image}
-                onPress={() => props.onNavigate(RootScreens.RESULT)}
-              />
-            )}
-            ListEmptyComponent={EmptyList}
-          />
-        </SafeAreaView>
-      )}
-      {data != null && data.length == 0 && (
-        <View style={styles.scrollContainer}>
-          <EmptyList />
-        </View>
-      )}
-    </View>
+        {isLoading == true && (
+          <View style={styles.scrollContainer}>
+            <ActivityIndicator size="large" color="#94B49F" />
+          </View>
+        )}
+        {data != null && data.length != 0 && isLoading == false && (
+          <SafeAreaView style={styles.scrollContainer}>
+            <FlatList
+              data={searchData}
+              renderItem={({ item }) => (
+                <FoodCard2
+                  name={item.name}
+                  cookingTime={item.cookingTime}
+                  image={item.image}
+                  onPress={() => props.onNavigate(RootScreens.RESULT)}
+                />
+              )}
+              ListEmptyComponent={EmptyList}
+            />
+          </SafeAreaView>
+        )}
+        {data != null && data.length == 0 && (
+          <View style={styles.scrollContainer}>
+            <EmptyList />
+          </View>
+        )}
+      </Box>
+    </SafeAreaView>
   );
 };
 
@@ -147,16 +149,14 @@ const windowHeight = Dimensions.get("window").height;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
   header: {
-    flex: 2,
+    marginBottom: 20,
     width: "100%",
-    marginTop: 30,
-    paddingLeft: 30,
-    paddingRight: 30,
+    // paddingLeft: 30,
+    // paddingRight: 30,
     justifyContent: "flex-start",
     alignItems: "flex-start",
   },
