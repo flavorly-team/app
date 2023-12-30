@@ -15,9 +15,11 @@ import { User } from "@/Services";
 import { FoodCard2 } from "@/Components/FoodCard2";
 import { SearchBar } from "@/Components/SearchBar";
 import { debounce } from "@/Utils/debounce";
-import { EmptyList } from "@/Components/EmptyList";
+import { NoSearchFound } from "@/Components/NoSearchFound";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RootScreens } from "..";
+import { IngredientCard } from "@/Components/IngredientCard";
+import { EmptyList } from "@/Components/EmptyList";
 
 const DATA = [
   {
@@ -95,6 +97,10 @@ export const Favorite = (props: {
     debouncedSearch(value);
   };
 
+  // TODO
+  const showRecipeDetail = (id: Number) => {
+    alert("Show Recipe Detail")
+  }
   return (
     <Box pl={5} pr={5} pt={12} flex={1}>
       <View style={styles.header}>
@@ -117,10 +123,10 @@ export const Favorite = (props: {
                 name={item.name}
                 cookingTime={item.cookingTime}
                 image={item.image}
-                onPress={() => props.onNavigate(RootScreens.RESULT)}
+                onPress={() => showRecipeDetail(item.id)}
               />
             )}
-            ListEmptyComponent={EmptyList}
+            ListEmptyComponent={NoSearchFound}
           />
         </SafeAreaView>
       )}

@@ -20,4 +20,7 @@ export const vi = {
   [LocalizationKey.SEARCH_FAVORITE]: "Tìm kiếm công thức của bạn",
   [LocalizationKey.RESULT]: "Kết quả",
   [LocalizationKey.RECOMMEND]: "Đề xuất",
+  [LocalizationKey.INGREDIENT_ADD]: "Nhập tên thực phẩm",
+  [LocalizationKey.ADD_INGREDIENT]: "Thêm một nguyên liệu",
+  [LocalizationKey.EMPTY]: "Không có nguyên liệu"
 };

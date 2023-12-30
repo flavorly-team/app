@@ -18,4 +18,7 @@ export enum LocalizationKey {
   SEARCH_FAVORITE = "Search your favorite recipes",
   RESULT = "Result",
   RECOMMEND = "See a recipe",
+  INGREDIENT_ADD = "Enter an ingredient",
+  ADD_INGREDIENT = "Add an ingredient",
+  EMPTY = "No data",
 }

@@ -112,7 +112,10 @@ export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
   };
   const greeting = useRef(getGreeting(getCurrentTime()));
 
-  const showRecommendedRecipe = () => {};
+  // Issue: Don't navigate to Result screen !!!
+  const showRecommendedRecipe = () => {
+    props.onNavigate(RootScreens.RESULT)
+  };
 
   const renderItem = ({ item }: { item: CategoryData }) => {
     const color = item.id === selectedId ? "#DCA85C" : "#455A64";

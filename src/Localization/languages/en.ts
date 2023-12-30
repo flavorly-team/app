@@ -20,4 +20,7 @@ export const en = {
   [LocalizationKey.SEARCH_FAVORITE]: "Search your favorite recipes",
   [LocalizationKey.RESULT]: "Result",
   [LocalizationKey.RECOMMEND]: "See a recipe",
+  [LocalizationKey.INGREDIENT_ADD]: "Enter an ingredient",
+  [LocalizationKey.ADD_INGREDIENT]: "Add an ingredient",
+  [LocalizationKey.EMPTY]: "No data",
 };

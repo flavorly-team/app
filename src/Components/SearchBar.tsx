@@ -36,6 +36,15 @@ export const SearchBar: React.FC<Props> = ({ placeholder, value, onChangeText })
           _dark={{
             placeholderTextColor: "blueGray.50",
           }}
+          InputRightElement={ value != null && value != "" ? 
+            <Icon
+              mr="2"
+              size="6"
+              color="gray.400"
+              as={<Ionicons name="close-circle-outline" />}
+              onPress={() => onChangeText("")}
+            /> : <></>
+          }
           value={value}
           onChangeText={onChangeText}
         />
