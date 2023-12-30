@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as Localization from "expo-localization";
 import { i18n, Language } from "@/Localization";
-import { NativeBaseProvider } from "native-base";
+import { NativeBaseProvider, extendTheme } from "native-base";
 import { store, persistor } from "@/Store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -18,31 +18,43 @@ import * as SplashScreen from "expo-splash-screen";
 
 i18n.locale = Localization.locale;
 i18n.enableFallback = true;
-i18n.defaultLocale = Language.ENGLISH;
+i18n.defaultLocale = Language.VIETNAMESE;
 
 export default function App() {
+  const theme = extendTheme({
+    colors: {
+      // Add new color
+      brand_green: {
+        500: "#94B49F",
+      },
+      brand_red: {
+        500: "#DF7861",
+      },
+    },
+  });
+
   const [fontsLoaded] = useFonts({
     Regular: Raleway_400Regular,
     Bold: Raleway_700Bold,
     CormorantSC_400Regular,
   });
 
-  useEffect(() => {
-    async function prepare() {
-      await SplashScreen.preventAutoHideAsync();
-    }
+  // useEffect(() => {
+  //   async function prepare() {
+  //     await SplashScreen.preventAutoHideAsync();
+  //   }
 
-    prepare();
-  }, []);
+  //   prepare();
+  // }, []);
 
   if (!fontsLoaded) {
-    return undefined;
+    return null;
   } else {
     SplashScreen.hideAsync();
   }
 
   return (
-    <NativeBaseProvider>
+    <NativeBaseProvider theme={theme}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ApplicationNavigator />

@@ -3,8 +3,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HomeContainer } from "@/Screens/Home";
 import { FavoriteContainer } from "@/Screens/Favorite";
 import { Icon } from "@/Components/Icon";
+import {Settings} from "@/Screens/Settings";
 
-const Tab = createBottomTabNavigator();
+export type RootTabParamList = {
+  Home: undefined;
+  Favorite: undefined;
+  Settings: undefined;
+};
+
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
 // @refresh reset
 export const MainNavigator = () => {
@@ -15,14 +22,23 @@ export const MainNavigator = () => {
         tabBarIcon: ({ focused, color, size }) => {
           let routeName = route.name;
           if (routeName === "Home") {
-            return focused ? <Icon name="home" size={size} color={color} /> :
-            <Icon name="home-outline" size={size} color={color} />
+            return focused ? (
+              <Icon name="home" size={size} color={color} />
+            ) : (
+              <Icon name="home-outline" size={size} color={color} />
+            );
           } else if (routeName === "Favorite") {
-            return focused ? <Icon name="heart" size={size} color={color} /> :
-            <Icon name="heart-outline" size={size} color={color} />
+            return focused ? (
+              <Icon name="heart" size={size} color={color} />
+            ) : (
+              <Icon name="heart-outline" size={size} color={color} />
+            );
           } else if (routeName === "Settings") {
-            return focused ? <Icon name="settings" size={size} color={color} /> :
-            <Icon name="settings-outline" size={size} color={color} />
+            return focused ? (
+              <Icon name="settings" size={size} color={color} />
+            ) : (
+              <Icon name="settings-outline" size={size} color={color} />
+            );
           }
         },
         tabBarActiveTintColor: "#94B49F",
@@ -34,8 +50,8 @@ export const MainNavigator = () => {
         tabBarStyle: [
           {
             display: "flex",
-            height: 62,
-            paddingBottom: 7,
+            height: 70,
+            paddingBottom: 20,
             paddingTop: 7,
           },
           null,
@@ -60,7 +76,7 @@ export const MainNavigator = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={FavoriteContainer}
+        component={Settings}
         options={{
           tabBarLabelPosition: "below-icon",
           headerShown: false,
