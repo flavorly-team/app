@@ -1,16 +1,20 @@
 import { Home } from "./Home";
-import React, { useState, useEffect } from "react";
 import { useLazyGetUserQuery } from "@/Services";
+import { RootScreens } from "..";
 
-export const HomeContainer = () => {
-  const [userId, setUserId] = useState("9");
+export const HomeContainer = ({ navigation }) => {
+  // const [userId, setUserId] = useState("5");
 
-  const [fetchOne, { data, isSuccess, isLoading, isFetching, error }] =
-    useLazyGetUserQuery();
+  // const [fetchOne, { data, isSuccess, isLoading, isFetching, error }] =
+  //   useLazyGetUserQuery();
 
-  useEffect(() => {
-    fetchOne(userId);
-  }, [fetchOne, userId]);
+  // useEffect(() => {
+  //   fetchOne(userId);
+  // }, [fetchOne, userId]);
 
-  return <Home data={data} isLoading={isLoading} />;
+  // return <Home data={data} isLoading={isLoading} />;
+  const onNavigate = (screen: RootScreens) => {
+    navigation.navigate(screen);
+  };
+  return <Home onNavigate={onNavigate} />;
 };

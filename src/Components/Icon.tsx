@@ -1,6 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-type IconName = keyof typeof Ionicons['glyphMap'];
+type IconName = keyof (typeof Ionicons)["glyphMap"];
 
 type Props = {
   name: IconName;
