@@ -19,5 +19,10 @@ export const vi = {
   [LocalizationKey.NOT_FOUND]: "Không tìm thấy kết quả tìm kiếm!",
   [LocalizationKey.SEARCH_FAVORITE]: "Tìm kiếm công thức của bạn",
   [LocalizationKey.RESULT]: "Kết quả",
-  [LocalizationKey.RECOMMEND]: "Đề xuất",
+  [LocalizationKey.GET_SUGGESTION]: "Đề xuất món",
+  [LocalizationKey.GREETING1]: "Chào buổi",
+  [LocalizationKey.GREETING2]: "Hôm nay bạn ăn gì?",
+  [LocalizationKey.ADD_INGREDIENT]: "Thêm nguyên liệu...",
+  [LocalizationKey.SUGGESTION]: "Đề xuất",
+  [LocalizationKey.GET_DETAIL]: "Xem chi tiết"
 };

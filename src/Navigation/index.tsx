@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer, NavigatorScreenParams } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  NavigatorScreenParams,
+} from "@react-navigation/native";
 import { MainNavigator, RootTabParamList } from "./Main";
 import { RootScreens } from "@/Screens";
 import { OnboardingContainer } from "../Screens/Onboarding/OnboardingContainer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ResultContainer } from "@/Screens/Result";
-import { FavoriteContainer } from "@/Screens/Favorite";
 import PinScreen from "@/Screens/Pin/PinScreen";
+import { ResultContainer } from "@/Screens/Result";
+import QuickView from "@/Screens/QuickView/QuickView";
 
 // https://stackoverflow.com/questions/68779417/navigation-navigatehome-showing-some-error-in-typescript
 declare global {
@@ -20,8 +23,8 @@ export type RootStackParamList = {
   [RootScreens.ONBOARDING]: undefined;
   [RootScreens.MAIN]: NavigatorScreenParams<RootTabParamList> | undefined;
   [RootScreens.PIN]: { id: string };
-  [RootScreens.RESULT]: undefined;
-  [RootScreens.FAVORITE]: undefined;
+  [RootScreens.RESULT]: { items: string[] | undefined };
+  [RootScreens.QUICKVIEW]: { items: string[] | undefined };
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -71,8 +74,16 @@ const ApplicationNavigator = () => {
           component={PinScreen}
           options={{}}
         />
-        <RootStack.Screen name={RootScreens.RESULT} component={ResultContainer}/>
-        <RootStack.Screen name={RootScreens.FAVORITE} component={FavoriteContainer} />
+        <RootStack.Screen
+          name={RootScreens.RESULT}
+          component={ResultContainer}
+          options={{}}
+        />
+        <RootStack.Screen
+          name={RootScreens.QUICKVIEW}
+          component={QuickView}
+          options={{}}
+        />
       </RootStack.Navigator>
     </NavigationContainer>
   );

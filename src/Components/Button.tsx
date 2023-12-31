@@ -1,5 +1,6 @@
-import { Pressable, View, Text, StyleSheet } from "react-native";
+import { Pressable, View, StyleSheet, TouchableOpacity } from "react-native";
 import { Icon } from "./Icon";
+import { Text } from "native-base";
 
 type Props = {
   name: string;
@@ -17,13 +18,15 @@ export const Button: React.FC<Props> = ({
   onPress,
 }) => {
   return (
-    <View style={[styles.container, {backgroundColor: `${bgColor}`}]}>
-      <Pressable>
+    <View style={[styles.container, { backgroundColor: `${bgColor}` }]}>
+      <TouchableOpacity onPress={onPress}>
         <View style={styles.btn}>
-          <Text style={[styles.btnText, {color: `${color}`}]}>{name}</Text>
+          <Text fontFamily="Bold" fontSize="lg" style={{ color: `${color}` }}>
+            {name}
+          </Text>
           <Icon name={iconName} size={25} color={color} />
         </View>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -34,8 +37,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 5,
-    marginVertical: 10,
+    borderRadius: 16,
     paddingVertical: 10,
   },
   btn: {
@@ -43,9 +45,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     columnGap: 5,
-  },
-  btnText: {
-    fontSize: 16,
-    fontFamily: "Bold",
   },
 });

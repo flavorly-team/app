@@ -126,7 +126,7 @@ export const Favorite = (props: {
                   name={item.name}
                   cookingTime={item.cookingTime}
                   image={item.image}
-                  onPress={() => props.onNavigate(RootScreens.RESULT)}
+                  onPress={() => props.onNavigate(RootScreens.PIN)}
                 />
               )}
               ListEmptyComponent={EmptyList}

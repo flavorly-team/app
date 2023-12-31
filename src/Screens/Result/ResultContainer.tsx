@@ -9,15 +9,15 @@ type ResultScreenNavigatorProps = NativeStackScreenProps<
 >;
 
 export const ResultContainer = ({
-  navigation,
+  route, navigation
 }: ResultScreenNavigatorProps) => {
-  const onNavigate = (screen: RootScreens) => {
-    navigation.navigate(screen);
+  const onNavigate = (screen: RootScreens, params) => {
+    navigation.navigate(screen, params);
   };
 
   const goBack = () => {
     navigation.goBack()
   }
 
-  return <Result onNavigate={onNavigate} goBack={goBack}/>;
+  return <Result onNavigate={onNavigate} goBack={goBack} route = {route}/>;
 };

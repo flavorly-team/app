@@ -18,8 +18,8 @@ import * as SplashScreen from "expo-splash-screen";
 
 // i18n.locale = Localization.locale;
 // i18n.enableFallback = true;
-i18n.locale = Language.VIETNAMESE;
-i18n.defaultLocale = Language.VIETNAMESE;
+i18n.locale = Language.ENGLISH;
+i18n.defaultLocale = Language.ENGLISH;
 
 export default function App() {
   const theme = extendTheme({

@@ -1,8 +1,9 @@
 import { Home } from "./Home";
 import { useLazyGetUserQuery } from "@/Services";
 import { RootScreens } from "..";
+import { useNavigation } from "@react-navigation/native";
 
-export const HomeContainer = ({ navigation }) => {
+export const HomeContainer = () => {
   // const [userId, setUserId] = useState("5");
 
   // const [fetchOne, { data, isSuccess, isLoading, isFetching, error }] =
@@ -13,8 +14,5 @@ export const HomeContainer = ({ navigation }) => {
   // }, [fetchOne, userId]);
 
   // return <Home data={data} isLoading={isLoading} />;
-  const onNavigate = (screen: RootScreens) => {
-    navigation.navigate(screen);
-  };
-  return <Home onNavigate={onNavigate} />;
+  return <Home />;
 };
