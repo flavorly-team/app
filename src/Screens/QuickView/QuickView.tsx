@@ -13,10 +13,12 @@ import { Box, ScrollView, Text, VStack, Spinner } from "native-base";
 import { searchRecipe } from "@/Services";
 import { EvilIcons } from "@expo/vector-icons";
 import { RootScreens } from "..";
+import { NoSearchFound } from "@/Components/NoSearchFound";
 
 const QuickView = ({ route, navigation }) => {
   const { items } = route.params;
   const [recipe, setRecipe] = useState(null);
+  const [isLoading, setLoading] = useState(true);
   // const windowHeight = Dimensions.get("window").height;
 
   useEffect(() => {
@@ -26,8 +28,10 @@ const QuickView = ({ route, navigation }) => {
         setRecipe(response[0]);
       }
     };
-
+    // setLoading(true);
     fetchData();
+    setLoading(false);
+    console.log("Done fetching");
   }, []);
 
   return (
@@ -41,71 +45,75 @@ const QuickView = ({ route, navigation }) => {
         </View>
       </Box>
       <View style={styles.content}>
-        {recipe ? (
-          <>
-            <Image source={{ uri: recipe.image }} style={styles.image} />
-            <Box flex={1.5}>
-              <Text
-                ml="auto"
-                mr="auto"
-                textAlign="center"
-                fontFamily="Bold"
-                fontSize="2xl"
-                mt={3}
-                numberOfLines={2}
-                w="80%"
-              >
-                {recipe.title}
-              </Text>
-              <Box pl={5} pr={5} flex={1}>
-                <Text fontFamily="Bold" fontSize="lg" mt={5} mb={3}>
-                  Ingredients
+        {!isLoading ? (
+          recipe ? (
+            <>
+              <Image source={{ uri: recipe.image }} style={styles.image} />
+              <Box flex={1.5}>
+                <Text
+                  ml="auto"
+                  mr="auto"
+                  textAlign="center"
+                  fontFamily="Bold"
+                  fontSize="2xl"
+                  mt={3}
+                  numberOfLines={2}
+                  w="80%"
+                >
+                  {recipe.title}
                 </Text>
-                <ScrollView style={{ height: "100%" }}>
-                  {recipe.missedIngredients.map((key, _) => {
-                    return (
-                      <Box
-                        key={key.id}
-                        flexDir="row"
-                        justifyContent="space-between"
-                        mb={5}
-                      >
-                        <Text
-                          fontFamily="Regular"
-                          fontSize="md"
-                          ml={5}
-                          maxW="85%"
+                <Box pl={5} pr={5} flex={1}>
+                  <Text fontFamily="Bold" fontSize="lg" mt={5} mb={3}>
+                    Ingredients
+                  </Text>
+                  <ScrollView style={{ height: "100%" }}>
+                    {recipe.missedIngredients.map((key, _) => {
+                      return (
+                        <Box
+                          key={key.id}
+                          flexDir="row"
+                          justifyContent="space-between"
+                          mb={5}
                         >
-                          {key.original}
-                        </Text>
-                        <EvilIcons name="close-o" size={24} color="red" />
-                      </Box>
-                    );
-                  })}
-                  {recipe.usedIngredients.map((key, _) => {
-                    return (
-                      <Box
-                        key={key.id}
-                        flexDir="row"
-                        justifyContent="space-between"
-                        mb={5}
-                      >
-                        <Text
-                          fontFamily="Regular"
-                          fontSize="md"
-                          ml={5}
-                          maxW="85%"
+                          <Text
+                            fontFamily="Regular"
+                            fontSize="md"
+                            ml={5}
+                            maxW="85%"
+                          >
+                            {key.original}
+                          </Text>
+                          <EvilIcons name="close-o" size={24} color="red" />
+                        </Box>
+                      );
+                    })}
+                    {recipe.usedIngredients.map((key, _) => {
+                      return (
+                        <Box
+                          key={key.id}
+                          flexDir="row"
+                          justifyContent="space-between"
+                          mb={5}
                         >
-                          {key.original}
-                        </Text>
-                        <EvilIcons name="check" size={24} color="green" />
-                      </Box>
-                    );
-                  })}
-                </ScrollView>
+                          <Text
+                            fontFamily="Regular"
+                            fontSize="md"
+                            ml={5}
+                            maxW="85%"
+                          >
+                            {key.original}
+                          </Text>
+                          <EvilIcons name="check" size={24} color="green" />
+                        </Box>
+                      );
+                    })}
+                  </ScrollView>
+                </Box>
               </Box>
-            </Box>
-          </>
+            </>
+          ) : (
+            <NoSearchFound />
+          )
         ) : (
           <Spinner accessibilityLabel="Loading recipe" />
         )}

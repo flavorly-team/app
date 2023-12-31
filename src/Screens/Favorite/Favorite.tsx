@@ -187,8 +187,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   header: {
-    flex: 2,
-    justifyContent: "center",
+    marginBottom: 20,
+    width: "100%",
+    justifyContent: "flex-start",
     alignItems: "flex-start",
   },
   headerText: {
@@ -199,6 +200,5 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flex: 6,
-    marginTop: 10,
   },
 });
