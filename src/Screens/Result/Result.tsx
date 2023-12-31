@@ -8,7 +8,7 @@ import { Button } from "@/Components/Button";
 import { Box, Icon, Input, ScrollView, Text, VStack } from "native-base";
 import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "@/Navigation";
-import { EmptyList } from "@/Components/EmptyList";
+import { NoSearchFound } from "@/Components/NoSearchFound";
 
 const IngredientTag = ({ data, key }) => {
   return (
@@ -68,7 +68,7 @@ export const Result = (props: {
                 return <IngredientTag data={key} key={index} />;
               })
             ) : (
-              <EmptyList />
+              <NoSearchFound />
             )}
           </VStack>
         </ScrollView>
