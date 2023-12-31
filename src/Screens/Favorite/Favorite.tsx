@@ -50,7 +50,7 @@ type FoodCard = {
 };
 
 export const Favorite = (props: {
-  onNavigate: (string: RootScreens) => void;
+  onNavigate: (string: RootScreens, params) => void;
 }) => {
   const [data, setData] = useState<Array<FoodCard> | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -126,7 +126,9 @@ export const Favorite = (props: {
                   name={item.name}
                   cookingTime={item.cookingTime}
                   image={item.image}
-                  onPress={() => props.onNavigate(RootScreens.RESULT)}
+                  onPress={() =>
+                    props.onNavigate(RootScreens.PIN, { id: item.id })
+                  }
                 />
               )}
               ListEmptyComponent={EmptyList}

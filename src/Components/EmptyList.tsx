@@ -28,9 +28,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   text: {
+    marginTop: 10,
     fontSize: 16,
     color: "#263238",
     fontWeight: "700",
     fontFamily: "Bold",
-  }
+  },
 });
