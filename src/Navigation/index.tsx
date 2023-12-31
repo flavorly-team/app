@@ -5,7 +5,7 @@ import { MainNavigator, RootTabParamList } from "./Main";
 import { RootScreens } from "@/Screens";
 import { OnboardingContainer } from "../Screens/Onboarding/OnboardingContainer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ResultContainer } from "@/Screens/Result";
+import { ResultContainer } from "@/Screens/Result - OLD";
 import { FavoriteContainer } from "@/Screens/Favorite";
 import PinScreen from "@/Screens/Pin/PinScreen";
 

@@ -14,7 +14,7 @@ import { INGREDIENT } from "@/data/ingredients";
 import { IngredientCard } from "./IngredientCard";
 import { NoSearchFound } from "./NoSearchFound";
 import { SearchItem } from "./SearchItem";
-import { Ingredient } from "@/Screens/Result/Result";
+import { Ingredient } from "@/Screens/Result - OLD/Result";
 
 type Props = {
   ingredients: Array<Ingredient>;

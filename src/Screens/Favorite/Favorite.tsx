@@ -83,7 +83,9 @@ export const Favorite = (props: {
         setIsLoading(false);
       } else {
         setSearchData(
-          data.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()))
+          data.filter((item) =>
+            item.name.toLowerCase().includes(value.toLowerCase())
+          )
         );
         setIsLoading(false);
       }
@@ -99,45 +101,49 @@ export const Favorite = (props: {
 
   // TODO
   const showRecipeDetail = (id: Number) => {
-    alert("Show Recipe Detail")
-  }
+    alert("Show Recipe Detail");
+  };
   return (
-    <Box pl={5} pr={5} pt={12} flex={1}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>
-          {i18n.t(LocalizationKey.MY_FAVORITE)}
-        </Text>
-        <SearchBar placeholder={i18n.t(LocalizationKey.SEARCH_FAVORITE)} value={searchTerm} onChangeText={handleSearch} />
-      </View>
-      {isLoading == true && (
-        <View style={styles.scrollContainer}>
-          <ActivityIndicator size="large" color="#94B49F" />
-        </View>
-      )}
-      {data != null && data.length != 0 && isLoading == false && (
-        <SafeAreaView style={styles.scrollContainer}>
-          <FlatList
-            data={searchData}
-            renderItem={({ item }) => (
-              <FoodCard2
-                name={item.name}
-                cookingTime={item.cookingTime}
-                image={item.image}
-                onPress={() => showRecipeDetail(item.id)}
-              />
-            )}
-            ListEmptyComponent={NoSearchFound}
+    <SafeAreaView style={{ flex: 1 }}>
+      <Box pl={5} pr={5} flex={1}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>
+            {i18n.t(LocalizationKey.MY_FAVORITE)}
+          </Text>
+          <SearchBar
+            placeholder={i18n.t(LocalizationKey.SEARCH_FAVORITE)}
+            value={searchTerm}
+            onChangeText={handleSearch}
           />
-        </SafeAreaView>
-      )}
-      {data != null && data.length == 0 && (
-        <View style={styles.scrollContainer}>
-          <EmptyList />
         </View>
-      )}
-    </Box>
-    // <View style={styles.container}>
-    // </View>
+        {isLoading == true && (
+          <View style={styles.scrollContainer}>
+            <ActivityIndicator size="large" color="#94B49F" />
+          </View>
+        )}
+        {data != null && data.length != 0 && isLoading == false && (
+          <SafeAreaView style={styles.scrollContainer}>
+            <FlatList
+              data={searchData}
+              renderItem={({ item }) => (
+                <FoodCard2
+                  name={item.name}
+                  cookingTime={item.cookingTime}
+                  image={item.image}
+                  onPress={() => showRecipeDetail(item.id)}
+                />
+              )}
+              ListEmptyComponent={NoSearchFound}
+            />
+          </SafeAreaView>
+        )}
+        {data != null && data.length == 0 && (
+          <View style={styles.scrollContainer}>
+            <EmptyList />
+          </View>
+        )}
+      </Box>
+    </SafeAreaView>
   );
 };
 
