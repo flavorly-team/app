@@ -44,7 +44,7 @@ const QuickView = ({ route, navigation }) => {
         {recipe ? (
           <>
             <Image source={{ uri: recipe.image }} style={styles.image} />
-            <Box flex="1.5">
+            <Box flex={1.5}>
               <Text
                 ml="auto"
                 mr="auto"
@@ -57,43 +57,51 @@ const QuickView = ({ route, navigation }) => {
               >
                 {recipe.title}
               </Text>
-              <Box pl={5} pr={5}>
+              <Box pl={5} pr={5} flex={1}>
                 <Text fontFamily="Bold" fontSize="lg" mt={5} mb={3}>
                   Ingredients
                 </Text>
-                <ScrollView>
-                  <VStack flex="1">
-                    {recipe.missedIngredients.map((key, index) => {
-                      return (
-                        <Box
-                          key={key.id}
-                          flexDir="row"
-                          justifyContent="space-between"
-                          mb={5}
+                <ScrollView style={{ height: "100%" }}>
+                  {recipe.missedIngredients.map((key, _) => {
+                    return (
+                      <Box
+                        key={key.id}
+                        flexDir="row"
+                        justifyContent="space-between"
+                        mb={5}
+                      >
+                        <Text
+                          fontFamily="Regular"
+                          fontSize="md"
+                          ml={5}
+                          maxW="85%"
                         >
-                          <Text fontFamily="Regular" fontSize="md" ml={5}>
-                            {key.original}
-                          </Text>
-                          <EvilIcons name="close-o" size={24} color="red" />
-                        </Box>
-                      );
-                    })}
-                    {recipe.usedIngredients.map((key, index) => {
-                      return (
-                        <Box
-                          key={key.id}
-                          flexDir="row"
-                          justifyContent="space-between"
-                          mb={5}
+                          {key.original}
+                        </Text>
+                        <EvilIcons name="close-o" size={24} color="red" />
+                      </Box>
+                    );
+                  })}
+                  {recipe.usedIngredients.map((key, _) => {
+                    return (
+                      <Box
+                        key={key.id}
+                        flexDir="row"
+                        justifyContent="space-between"
+                        mb={5}
+                      >
+                        <Text
+                          fontFamily="Regular"
+                          fontSize="md"
+                          ml={5}
+                          maxW="85%"
                         >
-                          <Text fontFamily="Regular" fontSize="md" ml={5}>
-                            {key.original}
-                          </Text>
-                          <EvilIcons name="check" size={24} color="green" />
-                        </Box>
-                      );
-                    })}
-                  </VStack>
+                          {key.original}
+                        </Text>
+                        <EvilIcons name="check" size={24} color="green" />
+                      </Box>
+                    );
+                  })}
                 </ScrollView>
               </Box>
             </Box>
@@ -102,7 +110,7 @@ const QuickView = ({ route, navigation }) => {
           <Spinner accessibilityLabel="Loading recipe" />
         )}
       </View>
-      <Box pl={6} pr={6} flex={0.4} flexDir="column" justifyContent="flex-end">
+      <Box pl={6} pr={6} flexDir="column" justifyContent="flex-end">
         <Button
           name={i18n.t(LocalizationKey.GET_DETAIL)}
           iconName="arrow-forward"
