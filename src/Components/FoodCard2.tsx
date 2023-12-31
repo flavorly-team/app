@@ -25,22 +25,18 @@ export const FoodCard2: React.FC<Props> = ({
   onPress,
 }) => {
   return (
-    <>
-      <View style={styles.container}>
-        <Pressable onPress={onPress}>
-          <Box pl={6} pr={6}>
-            <Image source={{ uri: image }} style={styles.image} />
-          </Box>
-          <View style={styles.content}>
-            <Text style={styles.nameText}>{name}</Text>
-            <View style={styles.cookingTime}>
-              <Icon name="time-outline" size={16} color="#263238" />
-              <Text style={styles.cookingTimeText}>{cookingTime}</Text>
-            </View>
+    <Box pl={0.5} pr={1} mb={3}>
+      <Pressable onPress={onPress}>
+        <Image source={{ uri: image }} style={styles.image} />
+        <View style={styles.content}>
+          <Text style={styles.nameText}>{name}</Text>
+          <View style={styles.cookingTime}>
+            <Icon name="time-outline" size={16} color="#263238" />
+            <Text style={styles.cookingTimeText}>{cookingTime}</Text>
           </View>
-        </Pressable>
-      </View>
-    </>
+        </View>
+      </Pressable>
+    </Box>
   );
 };
 
@@ -55,20 +51,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: 20,
   },
-  imageContainer: {
-    width: windowWidth,
-    // paddingLeft: 30,
-    // paddingRight: 30,
-  },
   image: {
     width: "100%",
     height: 150,
     borderRadius: 10,
   },
   content: {
-    width: windowWidth,
-    paddingLeft: 30,
-    paddingRight: 30,
     marginTop: 8,
     flexDirection: "row",
     justifyContent: "space-between",
