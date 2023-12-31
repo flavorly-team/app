@@ -11,8 +11,8 @@ import { RootStackParamList } from "@/Navigation";
 export const FavoriteContainer = ({
   navigation,
 }) => {
-  const onNavigate = (screen: RootScreens) => {
-    navigation.navigate(screen);
+  const onNavigate = (screen: RootScreens, params) => {
+    navigation.navigate(screen, params);
   };
 
   return <Favorite onNavigate={onNavigate}/>;
