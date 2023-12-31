@@ -8,6 +8,7 @@ import { Button } from "@/Components/Button";
 import { Box, Icon, Input, ScrollView, Text, VStack } from "native-base";
 import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "@/Navigation";
+import { EmptyList } from "@/Components/EmptyList";
 
 const IngredientTag = ({ data, key }) => {
   return (
@@ -61,24 +62,30 @@ export const Result = (props: {
       </Box>
       <View style={styles.content}>
         <ScrollView>
-          <VStack flex="1">
-            {items.map((key, index) => {
-              return <IngredientTag data={key} key={index} />;
-            })}
+          <VStack flex={1}>
+            {items.length > 0 ? (
+              items.map((key, index) => {
+                return <IngredientTag data={key} key={index} />;
+              })
+            ) : (
+              <EmptyList />
+            )}
           </VStack>
         </ScrollView>
       </View>
-      <Box pl={6} pr={6} style={styles.footer}>
-        <Button
-          name={i18n.t(LocalizationKey.GET_SUGGESTION)}
-          iconName="arrow-forward"
-          color="#ffffff"
-          bgColor="#94B49F"
-          onPress={() =>
-            props.onNavigate(RootScreens.QUICKVIEW, { items: items })
-          }
-        />
-      </Box>
+      {items.length > 0 && (
+        <Box pl={6} pr={6} style={styles.footer}>
+          <Button
+            name={i18n.t(LocalizationKey.GET_SUGGESTION)}
+            iconName="arrow-forward"
+            color="#ffffff"
+            bgColor="#94B49F"
+            onPress={() =>
+              props.onNavigate(RootScreens.QUICKVIEW, { items: items })
+            }
+          />
+        </Box>
+      )}
     </SafeAreaView>
   );
 };

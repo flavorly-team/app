@@ -88,6 +88,7 @@ export const Home = () => {
   const [imageURL, setImageURL] = useState(null);
   const [imageBase64, setImageBase64] = useState(null);
   const cameraRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigation = useNavigation();
 
@@ -109,34 +110,36 @@ export const Home = () => {
 
   // gonna take some mins
   const handleDetection = async () => {
-    // console.log("Start uploading");
-    // const url = await uploadIbb(imageBase64);
-    // console.log("End uploading");
+    setIsLoading(true);
+    console.log("Start uploading");
+    const url = await uploadIbb(imageBase64);
+    console.log("End uploading");
 
-    // if (url) {
-    //   let foodNames = [];
-    //   console.log("Start detection");
-    //   let detected = await detectFood(url);
-    //   if (detected && detected[0].value != 0) {
-    //     detected = detected.slice(0, 5).filter((item) => item.value >= 0.3);
-    //     foodNames = detected.map((item) => item.name);
-    //   }
-    //   console.log(detected);
-    //   console.log("End detection");
+    if (url) {
+      let foodNames = [];
+      console.log("Start detection");
+      let detected = await detectFood(url);
+      if (detected && detected[0].value != 0) {
+        detected = detected.slice(0, 5).filter((item) => item.value >= 0.3);
+        foodNames = detected.map((item) => item.name);
+      }
+      console.log(detected);
+      console.log("End detection");
 
-    //   setImageURL(null);
-    //   setModalVisible(!modalVisible);
-    //   navigation.navigate(RootScreens.RESULT, { items: foodNames });
-    // } else {
-    //   Alert.alert("Cannot process your image");
-    // }
+      setImageURL(null);
+      setModalVisible(!modalVisible);
+      navigation.navigate(RootScreens.RESULT, { items: foodNames });
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
 
     // test
-    setImageURL(null);
-    setModalVisible(!modalVisible);
-    navigation.navigate(RootScreens.RESULT, {
-      items: ["apple", "pork", "tomato", "butter", "potato"],
-    });
+    // setImageURL(null);
+    // setModalVisible(!modalVisible);
+    // navigation.navigate(RootScreens.RESULT, {
+    //   items: ["apple", "pork", "tomato", "butter", "potato"],
+    // });
   };
 
   const renderItem = ({ item }: { item: CategoryData }) => {
@@ -191,6 +194,13 @@ export const Home = () => {
             setModalVisible(!modalVisible);
           }}
         >
+          <Modal visible={isLoading} animationType="slide" transparent={true}>
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Spinner accessibilityLabel="Loading posts" />
+              </View>
+            </View>
+          </Modal>
           {hasCameraPermission ? (
             <View style={styles.containerCamera}>
               {!imageURL ? (

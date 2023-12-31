@@ -34,7 +34,7 @@ export const uploadIbb = async (source) => {
             }
         })
         .catch(err => {
-            alert('Cannot process your image');
+            alert('It\'s not your fault. The request cannot be processed at the moment. Please try again later.');
             console.log(err);
         });
 }
@@ -134,7 +134,7 @@ export const searchRecipe = async (ingredients) => {
         ingredients: ingredients,
         number: '1',
         ignorePantry: 'true',
-        ranking: '1'
+        ranking: '2'
     }).toString()
 
     console.log(searchReicpeApi)
