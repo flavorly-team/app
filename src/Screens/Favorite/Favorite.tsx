@@ -10,14 +10,16 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Box } from "native-base";
+import { HStack, Spinner, Heading, Box } from "native-base";
 import { User } from "@/Services";
 import { FoodCard2 } from "@/Components/FoodCard2";
 import { SearchBar } from "@/Components/SearchBar";
 import { debounce } from "@/Utils/debounce";
-import { EmptyList } from "@/Components/EmptyList";
+import { NoSearchFound } from "@/Components/NoSearchFound";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RootScreens } from "..";
+import { IngredientCard } from "@/Components/IngredientCard";
+import { EmptyList } from "@/Components/EmptyList";
 
 const DATA = [
   {
@@ -80,16 +82,10 @@ export const Favorite = (props: {
         setSearchData(data ? data : []);
         setIsLoading(false);
       } else {
-        const formatData = data
-          ? data.map((item) => {
-              return {
-                ...item,
-                name: item.name.toLowerCase(),
-              };
-            })
-          : [];
         setSearchData(
-          formatData.filter((item) => item.name.includes(value.toLowerCase()))
+          data.filter((item) =>
+            item.name.toLowerCase().includes(value.toLowerCase())
+          )
         );
         setIsLoading(false);
       }
@@ -103,6 +99,10 @@ export const Favorite = (props: {
     debouncedSearch(value);
   };
 
+  // TODO
+  const showRecipeDetail = (id: Number) => {
+    alert("Show Recipe Detail");
+  };
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Box pl={5} pr={5} flex={1}>
@@ -110,7 +110,11 @@ export const Favorite = (props: {
           <Text style={styles.headerText}>
             {i18n.t(LocalizationKey.MY_FAVORITE)}
           </Text>
-          <SearchBar value={searchTerm} onChangeText={handleSearch} />
+          <SearchBar
+            placeholder={i18n.t(LocalizationKey.SEARCH_FAVORITE)}
+            value={searchTerm}
+            onChangeText={handleSearch}
+          />
         </View>
         {isLoading == true && (
           <View style={styles.scrollContainer}>
@@ -131,7 +135,7 @@ export const Favorite = (props: {
                   }
                 />
               )}
-              ListEmptyComponent={EmptyList}
+              ListEmptyComponent={NoSearchFound}
             />
           </SafeAreaView>
         )}
@@ -148,6 +152,34 @@ export const Favorite = (props: {
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#fff",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+//   header: {
+//     flex: 2,
+//     width: "100%",
+//     marginTop: 30,
+//     paddingLeft: 30,
+//     paddingRight: 30,
+//     justifyContent: "center",
+//     alignItems: "flex-start",
+//   },
+//   headerText: {
+//     fontSize: 30,
+//     color: "#DF7861",
+//     fontWeight: "700",
+//     fontFamily: "Bold",
+//   },
+//   scrollContainer: {
+//     flex: 6,
+//     width: "100%",
+//   },
+// });
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -155,11 +187,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   header: {
-    marginBottom: 20,
-    width: "100%",
-    // paddingLeft: 30,
-    // paddingRight: 30,
-    justifyContent: "flex-start",
+    flex: 2,
+    justifyContent: "center",
     alignItems: "flex-start",
   },
   headerText: {
@@ -170,6 +199,6 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flex: 6,
-    width: "100%",
+    marginTop: 10,
   },
 });

@@ -25,5 +25,6 @@ export const en = {
   [LocalizationKey.ADD_INGREDIENT]: "Add ingredient...",
   [LocalizationKey.SUGGESTION]: "Suggestion",
   [LocalizationKey.GET_DETAIL]: "Detail",
-
+  [LocalizationKey.INGREDIENT_ADD]: "Enter an ingredient",
+  [LocalizationKey.EMPTY]: "No data",
 };

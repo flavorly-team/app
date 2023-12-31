@@ -12,6 +12,7 @@ import PinScreen from "@/Screens/Pin/PinScreen";
 import { ResultContainer } from "@/Screens/Result";
 import QuickView from "@/Screens/QuickView/QuickView";
 
+
 // https://stackoverflow.com/questions/68779417/navigation-navigatehome-showing-some-error-in-typescript
 declare global {
   namespace ReactNavigation {

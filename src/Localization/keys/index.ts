@@ -22,5 +22,7 @@ export enum LocalizationKey {
   GREETING2 = "greeting 2",
   ADD_INGREDIENT = "Add",
   SUGGESTION = "suggestion",
-  GET_DETAIL = "get detail"
+  GET_DETAIL = "get detail",
+  INGREDIENT_ADD = "Enter an ingredient",
+  EMPTY = "No data",
 }
