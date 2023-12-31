@@ -14,24 +14,15 @@ import {
   ViewStyle,
   SafeAreaView,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import {
-  HStack,
-  Spinner,
-  Heading,
-  Box,
-  Text,
-  Input,
-  Icon,
-  Center,
-} from "native-base";
-import { User } from "@/Services";
+import { HStack, Spinner, Heading, Box, Text, Input, Icon } from "native-base";
+import { detectFood, uploadIbb, User } from "@/Services";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Camera, CameraType, FlashMode } from "expo-camera";
 import Constants from "expo-constants";
 import { DATA, CategoryData, pins } from "@/data/pins";
 import MasonryList from "@/Components/MasonryList";
 import { RootScreens } from "..";
+import { useNavigation } from "@react-navigation/native";
 
 export interface IHomeProps {
   data: User | undefined;
@@ -88,14 +79,18 @@ const IconButton = ({ onPress, icon, style }: ButtonProps) => (
   </TouchableOpacity>
 );
 
-export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
+export const Home = () => {
   const [selectedId, setSelectedId] = useState<string>("1");
   const [modalVisible, setModalVisible] = useState(false);
   const [type, setType] = useState(CameraType.back);
   const [flash, setFlash] = useState(FlashMode.off);
   const [hasCameraPermission, setHasCameraPermission] = useState(false);
-  const [image, setImage] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
+  const [imageBase64, setImageBase64] = useState(null);
   const cameraRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigation = useNavigation();
 
   const getCurrentTime = () => {
     const currentTime = new Date();
@@ -104,18 +99,47 @@ export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
 
   const getGreeting = (hour: number) => {
     if (hour >= 0 && hour < 12) {
-      return "sáng";
+      return "morning";
     } else if (hour >= 12 && hour < 18) {
-      return "chiều";
+      return "afternoon";
     } else {
-      return "tối";
+      return "evening";
     }
   };
   const greeting = useRef(getGreeting(getCurrentTime()));
 
-  // Issue: Don't navigate to Result screen !!!
-  const showRecommendedRecipe = () => {
-    props.onNavigate(RootScreens.RESULT)
+  // gonna take some mins
+  const handleDetection = async () => {
+    setIsLoading(true);
+    console.log("Start uploading");
+    const url = await uploadIbb(imageBase64);
+    console.log("End uploading");
+
+    if (url) {
+      let foodNames = [];
+      console.log("Start detection");
+      let detected = await detectFood(url);
+      if (detected && detected[0].value != 0) {
+        detected = detected.slice(0, 5).filter((item) => item.value >= 0.3);
+        foodNames = detected.map((item) => item.name);
+      }
+      console.log(detected);
+      console.log("End detection");
+
+      setImageURL(null);
+      setModalVisible(!modalVisible);
+      navigation.navigate(RootScreens.RESULT, { items: foodNames });
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+
+    // test
+    // setImageURL(null);
+    // setModalVisible(!modalVisible);
+    // navigation.navigate(RootScreens.RESULT, {
+    //   items: ["apple", "pork", "tomato", "butter", "potato"],
+    // });
   };
 
   const renderItem = ({ item }: { item: CategoryData }) => {
@@ -135,9 +159,9 @@ export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
   const takePicture = async () => {
     if (cameraRef) {
       try {
-        const data = await cameraRef.current.takePictureAsync();
-        console.log(data);
-        setImage(data.uri);
+        const data = await cameraRef.current.takePictureAsync({ base64: true });
+        setImageURL(data.uri);
+        setImageBase64(data.base64);
       } catch (error) {
         console.log(error);
       }
@@ -146,7 +170,6 @@ export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
   const permisionFunction = async () => {
     // here is how you can get the camera permission
     const permission = await Camera.requestCameraPermissionsAsync();
-    // console.log(permission);
     setHasCameraPermission(permission.granted);
   };
 
@@ -171,9 +194,16 @@ export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
             setModalVisible(!modalVisible);
           }}
         >
+          <Modal visible={isLoading} animationType="slide" transparent={true}>
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Spinner accessibilityLabel="Loading posts" />
+              </View>
+            </View>
+          </Modal>
           {hasCameraPermission ? (
             <View style={styles.containerCamera}>
-              {!image ? (
+              {!imageURL ? (
                 <Camera
                   style={styles.camera}
                   type={type}
@@ -240,7 +270,7 @@ export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
                   </View>
                 </Camera>
               ) : (
-                <Image source={{ uri: image }} style={styles.camera} />
+                <Image source={{ uri: imageURL }} style={styles.camera} />
               )}
 
               <View
@@ -249,10 +279,10 @@ export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
                   // { justifyContent: image ? "space-between" : "center" },
                 ]}
               >
-                {image ? (
+                {imageURL ? (
                   <>
                     <IconButton
-                      onPress={() => setImage(null)}
+                      onPress={() => setImageURL(null)}
                       icon={
                         <Icon
                           size="10"
@@ -263,7 +293,7 @@ export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
                       style={styles.button}
                     />
                     <IconButton
-                      onPress={showRecommendedRecipe}
+                      onPress={handleDetection}
                       icon={
                         <Icon
                           size="10"
@@ -306,15 +336,15 @@ export const Home = (props: { onNavigate: (screen: RootScreens) => void }) => {
           )}
         </Modal>
         <Text fontSize="3xl" color="brand_green.500" fontFamily="Bold">
-          {`Chào buổi ${greeting.current}`}
+          {`${i18n.t(LocalizationKey.GREETING1)} ${greeting.current}`}
         </Text>
         <Text fontSize="3xl" color="brand_red.500" fontFamily="Bold" mt={-2}>
-          Hôm nay bạn ăn gì?
+          {i18n.t(LocalizationKey.GREETING2)}
         </Text>
         <Input
           variant="filled"
           fontFamily="Regular"
-          placeholder="Gõ vào tên các nguyên liệu"
+          placeholder={i18n.t(LocalizationKey.SEARCH_FAVORITE)}
           backgroundColor="gray.200"
           mt={3}
           borderRadius={8}

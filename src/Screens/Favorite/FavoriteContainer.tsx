@@ -3,16 +3,16 @@ import { RootScreens } from "..";
 import { Favorite } from "./Favorite";
 import { RootStackParamList } from "@/Navigation";
 
-type FavoriteScreenNavigatorProps = NativeStackScreenProps<
-  RootStackParamList,
-  RootScreens.FAVORITE
->;
+// type FavoriteScreenNavigatorProps = NativeStackScreenProps<
+//   RootStackParamList,
+//   RootScreens.FAVORITE
+// >;
 
 export const FavoriteContainer = ({
   navigation,
-}: FavoriteScreenNavigatorProps) => {
-  const onNavigate = (screen: RootScreens) => {
-    navigation.navigate(screen);
+}) => {
+  const onNavigate = (screen: RootScreens, params) => {
+    navigation.navigate(screen, params);
   };
 
   return <Favorite onNavigate={onNavigate}/>;
