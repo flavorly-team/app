@@ -1,8 +1,12 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, StyleSheet, Image, Dimensions, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import { ScrollView, Text } from "native-base";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "@/Navigation";
 import { RootScreens } from "..";
+import recipeList from "@/data/recipe";
+import { Icon } from "@/Components/Icon";
+import TabBar from "@/Components/TabBar";
 
 type PinScreenScreenNavigatorProps = NativeStackScreenProps<
   RootStackParamList,
@@ -14,39 +18,97 @@ const PinScreen = ({ route, navigation }: PinScreenScreenNavigatorProps) => {
     navigation.goBack();
   };
   const { id } = route.params;
+  const data = recipeList.find((item) => item.id === id);
+  const tabs = [
+    { label: 'Dụng cụ', onPress: () => console.log('Dụng cụ tab pressed') },
+    { label: 'Nguyên liệu', onPress: () => console.log('Nguyên liệu tab pressed') },
+    { label: 'Hướng dẫn', onPress: () => console.log('Hướng dẫn tab pressed') },
+  ];
+  
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>{`PinScreen ${id}`}</Text>
-      <Pressable onPress={goBack} style={[styles.backBtn]}>
-        <Ionicons name={"chevron-back"} size={35} color={"black"} />
-      </Pressable>
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.imageContainer}>
+            <Image
+              style={ styles.image }
+              source={{ uri: data.image }}
+            />
+            <TouchableOpacity style={styles.touchable} onPress={goBack}>
+              <Icon name="chevron-back-outline" color="#94B49F" size={30}/>
+            </TouchableOpacity>
+        </View>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>
+            {data.title}
+          </Text>
+          <Icon name="heart-outline" color="#ECB390" size={30}/>
+        </View>
+        <View style={styles.subtitleContainer}>
+          <Icon name="time-outline" size={16} color="#263238" />
+          <Text>{data.subtitle.time}</Text>
+          <Icon name="person-outline" size={16} color="#263238" />
+          <Text>{data.subtitle.numOfUsers}</Text>
+        </View>
+        <TabBar tabs={tabs}/>
+      </View>
+    </ScrollView>
   );
 };
 
+const deviceHeight = Dimensions.get('window').height
+
 const styles = StyleSheet.create({
-  root: {
-    height: "100%",
-    backgroundColor: "white",
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    paddingLeft: 24,
+    paddingRight: 24,
+    rowGap: 12,
   },
-  image: {
+  imageContainer: {
     width: "100%",
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
+    marginTop: 35,
+  },
+  image : {
+    resizeMode: 'cover',
+    width: "100%",
+    borderRadius: 26,
+    height: deviceHeight/2,
+  },
+  titleContainer: {
+    marginTop: 12,
+    flex: 2,
+    flexDirection: "row",
+    justifyContent: 'space-between',
   },
   title: {
-    margin: 10,
-    fontSize: 24,
-    fontWeight: "600",
-    textAlign: "center",
-    lineHeight: 35,
+    fontSize: 20,
+    color: "#DF7861",
+    fontWeight: "700",
+    fontFamily: "Bold",
   },
-  backBtn: {
-    position: "absolute",
-    left: 10,
+  subtitleContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: 'flex-start',
+    columnGap: 8,
+  },
+  touchable: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    borderRadius: 999,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    left: 14,
+    top: 20,
+    padding: 2,
   },
 });
 
