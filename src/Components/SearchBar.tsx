@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { Icon, Input } from "native-base";
@@ -7,7 +7,7 @@ import { Icon, Input } from "native-base";
 type Props = {
   placeholder: string;
   value: string;
-// onChangeText: Dispatch<SetStateAction<string>>;
+  // onChangeText: Dispatch<SetStateAction<string>>;
   onChangeText: (value: string) => void;
 };
 

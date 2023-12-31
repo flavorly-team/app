@@ -16,8 +16,9 @@ import { CormorantSC_400Regular } from "@expo-google-fonts/cormorant-sc";
 
 import * as SplashScreen from "expo-splash-screen";
 
-i18n.locale = Localization.locale;
-i18n.enableFallback = true;
+// i18n.locale = Localization.locale;
+// i18n.enableFallback = true;
+i18n.locale = Language.VIETNAMESE;
 i18n.defaultLocale = Language.VIETNAMESE;
 
 export default function App() {
