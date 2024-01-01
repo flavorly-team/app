@@ -4,4 +4,5 @@ export enum RootScreens {
   PIN = "Pin",
   RESULT = "Result",
   FAVORITE = "Favorite",
+  DEFAULT_SETTINGS = "Default Settings",
 }
