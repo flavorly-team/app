@@ -5,6 +5,7 @@ interface InstructionType {
 }
 
 interface IngredientType {
+    id: number,
     name: string;
     num: string;
     checked?: Boolean;
@@ -70,24 +71,27 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị tạo mùi",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                         checked: true,
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp",
                         checked: true,
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
-
                 ]
             },
             {
@@ -95,22 +99,25 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị nêm",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp"
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
-
                 ]
             }
 
@@ -118,12 +125,36 @@ const recipeList: RecipeType[] = [
         tool: [
             {
                 id: 1,
-                description: "Một bếp ga",
+                description: "Nồi Lẩu",
             },
             {
                 id: 2,
-                description: "Một nồi lớn",
-            }
+                description: "Bếp Đun Nước",
+            },
+            {
+                id: 3,
+                description: "Đồ Chảo hoặc Nồi Nhỏ",
+            },
+            {
+                id: 4,
+                description: "Đĩa hoặc Khay",
+            },
+            {
+                id: 5,
+                description: "Dụng Cụ Nạo, Băm",
+            },
+            {
+                id: 6,
+                description: "Đũa và Nĩa Ăn",
+            },
+            {
+                id: 7,
+                description: "Nồi Lẩu Điện hoặc Bếp Cồn",
+            },
+            {
+                id: 8,
+                description: "Thớt và Dao Bếp",
+            },
         ]
     },
     {
@@ -163,20 +194,24 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị tạo mùi",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                         checked: true,
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp",
                         checked: true,
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -188,18 +223,22 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị nêm",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp"
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -245,20 +284,24 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị tạo mùi",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                         checked: true,
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp",
                         checked: true,
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -270,18 +313,22 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị nêm",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp"
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -327,20 +374,24 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị tạo mùi",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                         checked: true,
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp",
                         checked: true,
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -352,18 +403,22 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị nêm",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp"
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -409,20 +464,24 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị tạo mùi",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                         checked: true,
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp",
                         checked: true,
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -434,18 +493,22 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị nêm",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp"
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -491,20 +554,24 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị tạo mùi",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                         checked: true,
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp",
                         checked: true,
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -516,18 +583,22 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị nêm",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp"
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -573,20 +644,24 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị tạo mùi",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                         checked: true,
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp",
                         checked: true,
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -598,18 +673,22 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị nêm",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp"
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -655,20 +734,24 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị tạo mùi",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                         checked: true,
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp",
                         checked: true,
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -680,18 +763,22 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị nêm",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp"
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -737,20 +824,24 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị tạo mùi",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                         checked: true,
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp",
                         checked: true,
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -762,18 +853,22 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị nêm",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp"
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -819,20 +914,24 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị tạo mùi",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                         checked: true,
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp",
                         checked: true,
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }
@@ -844,18 +943,22 @@ const recipeList: RecipeType[] = [
                 title: "Gia vị nêm",
                 items: [
                     {
+                        id: 1,
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
                     },
                     {
+                        id: 2,
                         name: "Lá chanh",
                         num: "1 tsp"
                     },
                     {
+                        id: 3,
                         name: "Bột me",
                         num: "1 tbsp",
                     },
                     {
+                        id: 4,
                         name: "Sả băm",
                         num: "1 tbsp",
                     }

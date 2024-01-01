@@ -8,6 +8,7 @@ import recipeList from "@/data/recipe";
 import { Icon } from "@/Components/Icon";
 import TabBar from "@/Components/TabBar";
 import ContentBox from "@/Components/ContentBox";
+import IngredientBox from "@/Components/IngredientBox";
 
 type PinScreenScreenNavigatorProps = NativeStackScreenProps<
   RootStackParamList,
@@ -15,19 +16,33 @@ type PinScreenScreenNavigatorProps = NativeStackScreenProps<
 >;
 
 const PinScreen = ({ route, navigation }: PinScreenScreenNavigatorProps) => {
-  const [selectedTab, setSelectedTab] = useState<string>("");
+    const tabs = [
+    { label: 'Dụng cụ' },
+    { label: 'Nguyên liệu' },
+    { label: 'Hướng dẫn' },
+  ];
+  const [selectedTab, setSelectedTab] = useState<string>(tabs[0].label);
+  const renderContent = (label) => {
+    switch (label) {
+      case 'Dụng cụ':
+        return <ContentBox data={data.tool} />;
+      case 'Nguyên liệu':
+        return <IngredientBox data={data.ingredient} />;
+      case 'Hướng dẫn':
+        return <ContentBox data={data.instruction} />;
+      default:
+        return null;
+    }
+  };
   const goBack = () => {
     navigation.goBack();
   };
   const { id } = route.params;
   const data = recipeList.find((item) => item.id === id);
 
-  const tabs = [
-    { label: 'Dụng cụ' },
-    { label: 'Nguyên liệu' },
-    { label: 'Hướng dẫn' },
-  ];
-
+  const handleTabChange = (label) => {
+    setSelectedTab(label);
+  };
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Box pl={4} pr={4}>
@@ -56,11 +71,10 @@ const PinScreen = ({ route, navigation }: PinScreenScreenNavigatorProps) => {
                 <Icon name="person-outline" size={16} color="#263238" />
                 <Text>{data.subtitle.numOfUsers}</Text>
             </View>
-            <TabBar tabs={tabs}/>
-            <ContentBox data={data.tool}/>
-            {/* <ContentBox data={data.instruction}/> */}
-            </VStack>
-            </ScrollView>
+            <TabBar tabs={tabs} onTabChange={handleTabChange}/>
+            {renderContent(selectedTab)}
+          </VStack>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -86,7 +100,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     width: "100%",
     borderRadius: 26,
-    height: deviceHeight/2,
+    height: deviceHeight/3,
   },
   titleContainer: {
     flex: 2,

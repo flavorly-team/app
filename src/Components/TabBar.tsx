@@ -8,22 +8,31 @@ type TabItem = {
 
 type TabBarProps = {
   tabs: TabItem[];
+  onTabChange: (label: string) => void;
 };
-const TabBar: React.FC<TabBarProps> = ({ tabs }: TabBarProps) => {
+const TabBar: React.FC<TabBarProps> = ({ tabs, onTabChange }: TabBarProps) => {
     const [activeTab, setActiveTab] = useState(tabs[0].label);
     const handleChangeTab = (label) => {
         setActiveTab(label);
+        onTabChange(label); 
       };
     
     return (
         <View style={styles.tabContainer}>
-            {tabs.map((tab, index) => (
-                <TouchableOpacity key={index} onPress={()=>handleChangeTab(tab.label)} style={tab.label === activeTab?styles.activeTab: null}>
-                    <Text style={tab.label === activeTab?styles.activeText: null}>{tab.label}</Text>
-                </TouchableOpacity>
-            ))}
-        </View>
-    );
+        {tabs.map((tab, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => handleChangeTab(tab.label)}
+            style={[
+              styles.tabItem,
+              tab.label === activeTab ? styles.activeTab : null,
+            ]}
+          >
+            <Text style={tab.label === activeTab ? styles.activeText : null}>{tab.label}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+      );
 };
 
 const styles = StyleSheet.create({
@@ -31,23 +40,20 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         justifyContent: "space-around",
-        alignContent: 'center',
-        verticalAlign: 'middle',
         paddingBottom: 12,
     },
-    activeTab: {
-        justifyContent: 'center',
+    tabItem: {
         borderRadius: 16,
-        backgroundColor: "#94B49F",
         paddingHorizontal: 15,
         paddingVertical: 10,
-    },
+      },
+    activeTab: {
+        backgroundColor: "#94B49F",
+    },    
     activeText: {
         color: "white",
-        fontWeight: "bold",
-        textAlign: "center",
-    }
-    
+        fontFamily: "Bold",
+    },    
   });
   
 export default TabBar;

@@ -1,12 +1,8 @@
 import {
     StyleSheet,
-    ScrollView,
-    useWindowDimensions,
     View,
     Text
   } from "react-native";
-  import { Box } from "native-base";
-import { Icon } from "./Icon";
 
   type Content = {
     id: number;
@@ -25,7 +21,9 @@ export const ContentBox = ({data}: ContentBlock) => {
         .map((item) => 
         (
           <View key={item.id}>
+            {item.title?
             <Text style={styles.title}>{item.title}</Text>
+            :<></>}
             <View style={styles.description}>
               <Text style={styles.bullet}>&bull;</Text>
               <Text style={styles.description}>{item.description}</Text>
@@ -40,20 +38,22 @@ export const ContentBox = ({data}: ContentBlock) => {
   container: {
     flex: 1,
     borderColor: "#E0E0E0",
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderRadius: 10,
-    paddingLeft: 12,
+    padding: 12,
+    rowGap: 12,
   },
   title: {
     fontFamily: "Bold",
     fontSize: 20,
-    marginBottom: 4,
+    marginBottom: 6,
   },
   description: {
     fontSize: 16,
     color: "#455A64",
     flex: 2,
-    flexDirection: "row"
+    flexDirection: "row",
+    lineHeight: 25,
   },
   bullet: {
     fontSize: 16,
