@@ -3,12 +3,17 @@ import { AntDesign } from "@expo/vector-icons";
 import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { RootScreens } from "@/Screens";
+import { useFavorite } from "@/Hooks/useFavorite";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { addFavorite, removeFavorite } from "@/Utils/setFavorite";
+import { checkFavorite } from "@/Utils/checkFavorite";
 
 const Pin = (props) => {
   const { id, image, title } = props.pin;
 
   const [ratio, setRatio] = useState(1);
   const navigation = useNavigation();
+  const [isLiked, setIsLiked] = useState(checkFavorite(id, props.favorites));
 
   useEffect(() => {
     if (image) {
@@ -16,7 +21,16 @@ const Pin = (props) => {
     }
   }, [image]);
 
-  const onLike = () => {};
+  const onLike = async () => {
+    if (isLiked) {
+      removeFavorite(id)
+      setIsLiked(false)
+    }
+    else {
+      addFavorite(id, image, title)
+      setIsLiked(true)
+    }
+  };
 
   const goToPinPage = () => {
     navigation.navigate(RootScreens.PIN, { id });
@@ -32,8 +46,8 @@ const Pin = (props) => {
           style={[styles.image, { aspectRatio: ratio }]}
         />
 
-        <Pressable onPress={onLike} style={styles.heartBtn}>
-          <AntDesign name="hearto" size={16} color="black" />
+        <Pressable onPress={onLike} style={isLiked ? [styles.heartBtn, {backgroundColor: "#DF7861"}] : styles.heartBtn}>
+          <AntDesign name="hearto" size={16} color={isLiked ? "white" : "black"} />
         </Pressable>
       </View>
 

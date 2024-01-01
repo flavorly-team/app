@@ -12,9 +12,10 @@ interface IMasonryList {
     image: string;
     title: string;
   }[];
+  favorites: any
 }
 
-const MasonryList = ({ pins }: IMasonryList) => {
+const MasonryList = ({ pins, favorites }: IMasonryList) => {
   const width = useWindowDimensions().width;
 
   const numColumns = Math.ceil(width / 350);
@@ -27,7 +28,7 @@ const MasonryList = ({ pins }: IMasonryList) => {
             {pins
               .filter((_, index) => index % numColumns === colIndex)
               .map((pin) => (
-                <Pin pin={pin} key={pin.id} />
+                <Pin pin={pin} key={pin.id} favorites={favorites}/>
               ))}
           </View>
         ))}
