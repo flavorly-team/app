@@ -13,6 +13,7 @@ import {
   StyleProp,
   ViewStyle,
   SafeAreaView,
+  ActivityIndicator,
 } from "react-native";
 import { HStack, Spinner, Heading, Box, Text, Input, Icon } from "native-base";
 import { detectFood, uploadIbb, User } from "@/Services";
@@ -24,6 +25,7 @@ import MasonryList from "@/Components/MasonryList";
 import { RootScreens } from "..";
 import { useNavigation } from "@react-navigation/native";
 import recipeList from "@/data/recipe";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 export interface IHomeProps {
   data: User | undefined;
   isLoading: boolean;
@@ -174,6 +176,21 @@ export const Home = () => {
 
   useEffect(() => {
     permisionFunction();
+  }, []);
+
+  // Get Favorites from AsyncStorage
+  const [favorites, setFavorites] = useState(null);
+
+  useEffect(() => {
+    const f = async () => {
+      const store = await AsyncStorage.getItem("@favorites");
+      if (store === null) {
+        setFavorites([]);
+      } else {
+        setFavorites(JSON.parse(store));
+      }
+    };
+    f();
   }, []);
 
   return (
@@ -371,7 +388,11 @@ export const Home = () => {
           extraData={selectedId}
           style={{}}
         />
-        <MasonryList pins={recipeList} />
+        {favorites ? (
+          <MasonryList pins={recipeList} favorites={favorites} />
+        ) : (
+          <ActivityIndicator size="large" color="#94B49F" />
+        )}
       </Box>
       <IconButton
         onPress={() => setModalVisible(true)}
