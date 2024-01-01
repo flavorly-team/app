@@ -1,16 +1,10 @@
 import { LocalizationKey, i18n } from "@/Localization";
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  Image,
-  Dimensions,
-} from "react-native";
+import { StyleSheet, View, SafeAreaView, Image } from "react-native";
 import { GoBackBtn } from "@/Components/GoBackBtn";
 import { useEffect, useState } from "react";
 import { Button } from "@/Components/Button";
-import { Box, ScrollView, Text, VStack, Spinner } from "native-base";
-import { searchRecipe } from "@/Services";
+import { Box, ScrollView, Text, Spinner } from "native-base";
+import { searchRecipeByIngredients } from "@/Services";
 import { EvilIcons } from "@expo/vector-icons";
 import { RootScreens } from "..";
 import { NoSearchFound } from "@/Components/NoSearchFound";
@@ -19,16 +13,15 @@ const QuickView = ({ route, navigation }) => {
   const { items } = route.params;
   const [recipe, setRecipe] = useState(null);
   const [isLoading, setLoading] = useState(true);
-  // const windowHeight = Dimensions.get("window").height;
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await searchRecipe(items.join(","));
+      const response = await searchRecipeByIngredients(items.join(","));
       if (response.length > 0) {
         setRecipe(response[0]);
       }
     };
-    // setLoading(true);
+    setLoading(true);
     fetchData();
     setLoading(false);
     console.log("Done fetching");

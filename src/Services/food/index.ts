@@ -1,3 +1,5 @@
+import { Config } from "@/Config"
+
 type DetectionResult = {
     outputs: [
         {
@@ -18,10 +20,7 @@ export type Concept = {
 export const uploadIbb = async (source) => {
     const formData = new FormData()
     formData.append('image', source)
-    let apiUrl =
-        'https://api.imgbb.com/1/upload?key=2d4f7df973976b36379f2cc7bd16807a';
-
-    return fetch(apiUrl, {
+    return fetch(Config.IBB_UPLOAD, {
         body: formData,
         method: 'POST'
     })
@@ -41,14 +40,12 @@ export const uploadIbb = async (source) => {
 
 export const uploadImageCloudinary = async (image) => {
     let base64Img = `data:image/jpg;base64,${image}`;
-    let apiUrl =
-        'https://api.cloudinary.com/v1_1/dwfzcj8tz/image/upload';
     let data = {
         file: base64Img,
         upload_preset: 'hnefaxtm'
     };
 
-    return fetch(apiUrl, {
+    return fetch(Config.CLOUDINARY_UPLOAD, {
         body: JSON.stringify(data),
         headers: {
             'content-type': 'application/json'
@@ -112,7 +109,7 @@ export const detectFood = async (uri) => {
     }
 
     return fetch(
-        "https://api.clarifai.com/v2/models/" +
+        Config.FOOD_DETECTION_API +
         MODEL_ID +
         "/versions/" +
         MODEL_VERSION_ID +
@@ -129,8 +126,8 @@ export const detectFood = async (uri) => {
         });
 };
 
-export const searchRecipe = async (ingredients) => {
-    const searchReicpeApi = 'https://api.spoonacular.com/recipes/findByIngredients?' + new URLSearchParams({
+export const searchRecipeByIngredients = async (ingredients) => {
+    const searchReicpeApi = Config.INGREDIENT_SEARCH_API + new URLSearchParams({
         ingredients: ingredients,
         number: '1',
         ignorePantry: 'true',
@@ -157,3 +154,58 @@ export const searchRecipe = async (ingredients) => {
             console.log(err);
         });
 }
+
+export const searchRecipes = async (number: string, offset: string, query: string, type: string) => {
+    const searchReicpeApi = Config.COMPLEX_SEARCH_API + new URLSearchParams({
+        number,
+        type,
+        offset,
+        query
+    }).toString()
+
+    console.log(searchReicpeApi)
+    return fetch(searchReicpeApi, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": 'a7f46677e7a44e029747ba26aa33de1b'
+        },
+    })
+
+        .then((response) => response.json())
+        .then((result) => {
+            // console.log(result)
+            return result.results
+        })
+        .catch(err => {
+            alert('Error');
+            console.log(err);
+        });
+}
+
+export const getRecipeInformation = async (id) => {
+    const searchReicpeApi = `${Config.GET_RECIPE_INFO}${id}/information?` + new URLSearchParams({
+        includeNutrition: "false"
+    }).toString()
+
+    console.log(searchReicpeApi)
+
+    return fetch(searchReicpeApi, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": 'a7f46677e7a44e029747ba26aa33de1b'
+        },
+    })
+
+        .then((response) => response.json())
+        .then((result) => {
+            // console.log(result)
+            return result
+        })
+        .catch(err => {
+            alert('Error');
+            console.log(err);
+        });
+}
+

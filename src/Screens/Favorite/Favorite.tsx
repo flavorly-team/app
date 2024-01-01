@@ -2,7 +2,6 @@ import { i18n, LocalizationKey } from "@/Localization";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Dimensions,
   FlatList,
@@ -10,7 +9,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { HStack, Spinner, Heading, Box } from "native-base";
+import { HStack, Spinner, Heading, Box, Text } from "native-base";
 import { User } from "@/Services";
 import { FoodCard2 } from "@/Components/FoodCard2";
 import { SearchBar } from "@/Components/SearchBar";
@@ -107,7 +106,7 @@ export const Favorite = (props: {
     <SafeAreaView style={{ flex: 1 }}>
       <Box pl={5} pr={5} flex={1}>
         <View style={styles.header}>
-          <Text style={styles.headerText}>
+          <Text fontSize="3xl" color="brand_red.500" fontFamily="Bold">
             {i18n.t(LocalizationKey.MY_FAVORITE)}
           </Text>
           <SearchBar
@@ -192,12 +191,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
   },
-  headerText: {
-    fontSize: 30,
-    color: "#DF7861",
-    fontWeight: "700",
-    fontFamily: "Bold",
-  },
+  // headerText: {
+  //   fontSize: 30,
+  //   color: "#DF7861",
+  //   fontWeight: "700",
+  //   fontFamily: "Bold",
+  // },
   scrollContainer: {
     flex: 6,
   },

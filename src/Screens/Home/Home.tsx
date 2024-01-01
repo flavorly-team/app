@@ -5,29 +5,23 @@ import {
   FlatList,
   TouchableOpacity,
   Dimensions,
-  Modal,
-  Alert,
-  View,
-  Pressable,
-  Image,
   StyleProp,
   ViewStyle,
   SafeAreaView,
 } from "react-native";
-import { HStack, Spinner, Heading, Box, Text, Input, Icon } from "native-base";
-import { detectFood, uploadIbb, User } from "@/Services";
+import { Box, Text, Input, Icon } from "native-base";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Camera, CameraType, FlashMode } from "expo-camera";
-import Constants from "expo-constants";
-import { DATA, CategoryData, pins } from "@/data/pins";
 import MasonryList from "@/Components/MasonryList";
-import { RootScreens } from "..";
 import { useNavigation } from "@react-navigation/native";
 import recipeList from "@/data/recipe";
-export interface IHomeProps {
-  data: User | undefined;
-  isLoading: boolean;
-}
+import { Camera } from "expo-camera";
+import CustomCamera from "../Camera/CustomCamera";
+import { CategoryData, MealTypes } from "@/data/meal-type";
+
+// export interface IHomeProps {
+//   data: User | undefined;
+//   isLoading: boolean;
+// }
 
 // export const Home = (props: IHomeProps) => {
 // const { data, isLoading } = props;
@@ -52,6 +46,7 @@ export interface IHomeProps {
 //   </View>
 // );
 // };
+
 type ItemProps = {
   item: CategoryData;
   onPress: () => void;
@@ -80,15 +75,11 @@ const IconButton = ({ onPress, icon, style }: ButtonProps) => (
 );
 
 export const Home = () => {
-  const [selectedId, setSelectedId] = useState<string>("1");
-  const [modalVisible, setModalVisible] = useState(false);
-  const [type, setType] = useState(CameraType.back);
-  const [flash, setFlash] = useState(FlashMode.off);
+  const [selectedMealType, setSelectedMealType] = useState<CategoryData>(
+    MealTypes[0]
+  );
   const [hasCameraPermission, setHasCameraPermission] = useState(false);
-  const [imageURL, setImageURL] = useState(null);
-  const [imageBase64, setImageBase64] = useState(null);
-  const cameraRef = useRef(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [cameraVisible, setCameraVisible] = useState(false);
 
   const navigation = useNavigation();
 
@@ -108,64 +99,19 @@ export const Home = () => {
   };
   const greeting = useRef(getGreeting(getCurrentTime()));
 
-  // gonna take some mins
-  const handleDetection = async () => {
-    setIsLoading(true);
-    console.log("Start uploading");
-    const url = await uploadIbb(imageBase64);
-    console.log("End uploading");
-
-    if (url) {
-      let foodNames = [];
-      console.log("Start detection");
-      let detected = await detectFood(url);
-      if (detected && detected[0].value != 0) {
-        detected = detected.slice(0, 5).filter((item) => item.value >= 0.3);
-        foodNames = detected.map((item) => item.name);
-      }
-      console.log(detected);
-      console.log("End detection");
-
-      setImageURL(null);
-      setModalVisible(!modalVisible);
-      navigation.navigate(RootScreens.RESULT, { items: foodNames });
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-    }
-
-    // test
-    // setImageURL(null);
-    // setModalVisible(!modalVisible);
-    // navigation.navigate(RootScreens.RESULT, {
-    //   items: ["apple", "pork", "tomato", "butter", "potato"],
-    // });
-  };
-
   const renderItem = ({ item }: { item: CategoryData }) => {
-    const color = item.id === selectedId ? "#DCA85C" : "#455A64";
-    const fontFamily = item.id === selectedId ? "Bold" : "Regular";
+    const color = item.id === selectedMealType.id ? "#DCA85C" : "#455A64";
+    const fontFamily = item.id === selectedMealType.id ? "Bold" : "Regular";
     return (
       <Item
         item={item}
-        onPress={() => setSelectedId(item.id)}
+        onPress={() => setSelectedMealType(item)}
         textColor={color}
         fontFamily={fontFamily}
       />
     );
   };
 
-  const takePicture = async () => {
-    if (cameraRef) {
-      try {
-        const data = await cameraRef.current.takePictureAsync({ base64: true });
-        setImageURL(data.uri);
-        setImageBase64(data.base64);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
   const permisionFunction = async () => {
     // here is how you can get the camera permission
     const permission = await Camera.requestCameraPermissionsAsync();
@@ -185,155 +131,12 @@ export const Home = () => {
         >
           <Text style={styles.textStyle}>Toggle permission</Text>
         </TouchableOpacity> */}
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <Modal visible={isLoading} animationType="slide" transparent={true}>
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <Spinner accessibilityLabel="Loading posts" />
-              </View>
-            </View>
-          </Modal>
-          {hasCameraPermission ? (
-            <View style={styles.containerCamera}>
-              {!imageURL ? (
-                <Camera
-                  style={styles.camera}
-                  type={type}
-                  ref={cameraRef}
-                  flashMode={flash}
-                >
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <IconButton
-                      onPress={() => setModalVisible(!modalVisible)}
-                      icon={
-                        <Icon
-                          size="10"
-                          color="muted.600"
-                          as={<Ionicons name="close-outline" />}
-                        />
-                      }
-                      style={styles.button}
-                    />
-                    <IconButton
-                      onPress={() => {
-                        setType(
-                          type === CameraType.back
-                            ? CameraType.front
-                            : CameraType.back
-                        );
-                      }}
-                      icon={
-                        <Icon
-                          size="10"
-                          color="muted.600"
-                          as={<Ionicons name="camera-reverse-outline" />}
-                        />
-                      }
-                      style={styles.button}
-                    />
-                    <IconButton
-                      onPress={() =>
-                        setFlash(
-                          flash === FlashMode.off ? FlashMode.on : FlashMode.off
-                        )
-                      }
-                      icon={
-                        flash === FlashMode.off ? (
-                          <Icon
-                            size="10"
-                            color="muted.600"
-                            as={<Ionicons name="flash-outline" />}
-                          />
-                        ) : (
-                          <Icon
-                            size="10"
-                            color="muted.600"
-                            as={<Ionicons name="flash-off-outline" />}
-                          />
-                        )
-                      }
-                      style={styles.button}
-                    />
-                  </View>
-                </Camera>
-              ) : (
-                <Image source={{ uri: imageURL }} style={styles.camera} />
-              )}
-
-              <View
-                style={[
-                  styles.controls,
-                  // { justifyContent: image ? "space-between" : "center" },
-                ]}
-              >
-                {imageURL ? (
-                  <>
-                    <IconButton
-                      onPress={() => setImageURL(null)}
-                      icon={
-                        <Icon
-                          size="10"
-                          color="brand_red.500"
-                          as={<Ionicons name="reload-outline" />}
-                        />
-                      }
-                      style={styles.button}
-                    />
-                    <IconButton
-                      onPress={handleDetection}
-                      icon={
-                        <Icon
-                          size="10"
-                          color="brand_red.500"
-                          as={<Ionicons name="checkmark-outline" />}
-                        />
-                      }
-                      style={styles.button}
-                    />
-                  </>
-                ) : (
-                  <IconButton
-                    onPress={takePicture}
-                    icon={
-                      <Icon
-                        size="10"
-                        color="brand_red.500"
-                        as={<Ionicons name="radio-button-on-outline" />}
-                      />
-                    }
-                    style={styles.button}
-                  />
-                )}
-              </View>
-            </View>
-          ) : (
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <Text style={styles.modalText}>
-                  This app does not have permission to use your camera!
-                </Text>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisible(!modalVisible)}
-                >
-                  <Text style={styles.textStyle}>Close</Text>
-                </Pressable>
-              </View>
-            </View>
-          )}
-        </Modal>
+        <CustomCamera
+          navigation={navigation}
+          hasCameraPermission={hasCameraPermission}
+          cameraVisible={cameraVisible}
+          setCameraVisible={setCameraVisible}
+        />
         <Text fontSize="3xl" color="brand_green.500" fontFamily="Bold">
           {`${i18n.t(LocalizationKey.GREETING1)} ${greeting.current}`}
         </Text>
@@ -365,16 +168,19 @@ export const Home = () => {
         />
         <FlatList
           horizontal={true}
-          data={DATA}
+          data={MealTypes}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          extraData={selectedId}
+          keyExtractor={(item) => item.id.toString()}
+          extraData={selectedMealType.id}
           style={{}}
         />
-        <MasonryList pins={recipeList} />
+        <MasonryList
+          mealType={selectedMealType.title.toLowerCase()}
+          key={selectedMealType.id}
+        />
       </Box>
       <IconButton
-        onPress={() => setModalVisible(true)}
+        onPress={() => setCameraVisible(true)}
         icon={
           <Icon
             size="10"
@@ -418,61 +224,5 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 30,
     bottom: 20,
-  },
-
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-  camera: {
-    flex: 5,
-    borderRadius: 20,
-  },
-  containerCamera: {
-    flex: 1,
-    justifyContent: "center",
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#000",
-    padding: 8,
-  },
-  controls: {
-    flex: 0.5,
-    flexDirection: "row",
-    justifyContent: "center",
-    gap: 100,
   },
 });

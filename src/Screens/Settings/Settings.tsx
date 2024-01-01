@@ -1,9 +1,11 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text } from "native-base";
 import React, { useState } from "react";
 import { RootScreens } from "..";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/AntDesign";
 import { Switch } from "react-native-switch";
+import { LocalizationKey, i18n } from "@/Localization";
 
 export const Settings = (props: {
   onNavigate: (screen: RootScreens, params) => void;
@@ -16,7 +18,9 @@ export const Settings = (props: {
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.headingWrapper}>
-          <Text style={styles.heading}>Cài đặt</Text>
+          <Text fontSize="3xl" color="brand_red.500" fontFamily="Bold">
+            {i18n.t(LocalizationKey.SETTINGS)}
+          </Text>
         </View>
         <View style={styles.wrapper}>
           <View style={styles.settingsGroupContainer}>

@@ -25,4 +25,8 @@ export enum LocalizationKey {
   GET_DETAIL = "get detail",
   INGREDIENT_ADD = "Enter an ingredient",
   EMPTY = "No data",
+  SETTINGS = "settings",
+  TAB1 = 'tools',
+  TAB2 = 'ingredients',
+  TAB3 = 'more'
 }

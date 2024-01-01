@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text } from "native-base";
 import { RootScreens } from "..";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GoBackBtn } from "../../Components/GoBackBtn";
+import { LocalizationKey, i18n } from "@/Localization";
 export interface SettingType {
   name: string;
   options: string[];
@@ -19,7 +21,9 @@ export const DefaultSettings = (props: {
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.headingWrapper}>
-          <Text style={styles.heading}>Cài đặt</Text>
+          <Text fontSize="3xl" color="brand_red.500" fontFamily="Bold">
+            {i18n.t(LocalizationKey.SETTINGS)}
+          </Text>
           <GoBackBtn color="#94B49F" onPress={() => props.goBack()} />
         </View>
         <View style={styles.wrapper}>

@@ -1,40 +1,54 @@
-import {
-    StyleSheet,
-    View,
-    Text
-  } from "react-native";
+import { StyleSheet, View, Text, Linking, Image } from "react-native";
 
-  type Content = {
-    id: number;
-    title?: string;
-    description: string;
-};
+export const ContentBox = ({ data, showTools, showInstructions }) => {
+  const equipments = data.analyzedInstructions.equipment;
+  const steps = data.analyzedInstructions.steps;
 
-type ContentBlock = {
-  data: Content[]
-}
-
-export const ContentBox = ({data}: ContentBlock) => {
-  return (
-    <View style={styles.container}>
-      {data
-        .map((item) => 
-        (
-          <View key={item.id}>
-            {item.title?
-            <Text style={styles.title}>{item.title}</Text>
-            :<></>}
-            <View style={styles.description}>
-              <Text style={styles.bullet}>&bull;</Text>
-              <Text style={styles.description}>{item.description}</Text>
+  if (showTools)
+    return (
+      <View style={styles.container}>
+        {equipments ? (
+          equipments.map((item) => (
+            <View key={item.id} style={styles.description}>
+              <>
+                <Text style={styles.bullet}>&bull;</Text>
+                <Text style={styles.description}>{item.name}</Text>
+              </>
             </View>
-          </View>
-        ))}
-    </View>
-  )
+          ))
+        ) : (
+          <Text
+            style={{ color: "blue" }}
+            onPress={() => Linking.openURL(data.sourceUrl)}
+          >
+            {`Read the detailed instructions on ${data.sourceName}`}
+          </Text>
+        )}
+      </View>
+    );
 
-}
- const styles = StyleSheet.create({
+  if (showInstructions)
+    return (
+      <View style={styles.container}>
+        {steps ? (
+          steps.map((item) => (
+            <View key={item.number}>
+              <Text style={styles.title}>{`Step ${item.number}`}</Text>
+              <Text style={styles.description}>{item.step}</Text>
+            </View>
+          ))
+        ) : (
+          <Text
+            style={{ color: "blue" }}
+            onPress={() => Linking.openURL(data.sourceUrl)}
+          >
+            {`Read the detailed instructions on ${data.sourceName}`}
+          </Text>
+        )}
+      </View>
+    );
+};
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderColor: "#E0E0E0",
@@ -53,18 +67,15 @@ export const ContentBox = ({data}: ContentBlock) => {
     color: "#455A64",
     flex: 2,
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     lineHeight: 25,
   },
   bullet: {
     fontSize: 16,
-    color: '#455A64',
+    color: "#455A64",
     marginRight: 5,
-  }
+  },
 });
 
-
-
 export default ContentBox;
-
-
-  

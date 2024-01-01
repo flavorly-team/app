@@ -26,5 +26,6 @@ export const vi = {
   [LocalizationKey.SUGGESTION]: "Đề xuất",
   [LocalizationKey.GET_DETAIL]: "Xem chi tiết",
   [LocalizationKey.INGREDIENT_ADD]: "Nhập tên thực phẩm",
-  [LocalizationKey.EMPTY]: "Không có nguyên liệu"
+  [LocalizationKey.EMPTY]: "Không có nguyên liệu",
+  [LocalizationKey.SETTINGS]: "Cài đặt",
 };
