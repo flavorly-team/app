@@ -3,7 +3,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HomeContainer } from "@/Screens/Home";
 import { FavoriteContainer } from "@/Screens/Favorite";
 import { Icon } from "@/Components/Icon";
-import {Settings} from "@/Screens/Settings";
+import { useAsyncStorage } from "@react-native-async-storage/async-storage";
+import { SettingsContainer } from "../../Screens/Settings";
 
 export type RootTabParamList = {
   Home: undefined;
@@ -76,7 +77,7 @@ export const MainNavigator = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingsContainer}
         options={{
           tabBarLabelPosition: "below-icon",
           headerShown: false,

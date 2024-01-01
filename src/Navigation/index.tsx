@@ -11,6 +11,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import PinScreen from "@/Screens/Pin/PinScreen";
 import { ResultContainer } from "@/Screens/Result";
 import QuickView from "@/Screens/QuickView/QuickView";
+import { DefaultSettingsContainer } from "../Screens/DefaultSettings";
+import { FavoriteContainer } from "../Screens/Favorite";
 
 // https://stackoverflow.com/questions/68779417/navigation-navigatehome-showing-some-error-in-typescript
 declare global {
@@ -25,6 +27,8 @@ export type RootStackParamList = {
   [RootScreens.PIN]: { id: string };
   [RootScreens.RESULT]: { items: string[] | undefined };
   [RootScreens.QUICKVIEW]: { items: string[] | undefined };
+  [RootScreens.FAVORITE]: undefined;
+  [RootScreens.DEFAULT_SETTINGS]: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -83,6 +87,14 @@ const ApplicationNavigator = () => {
           name={RootScreens.QUICKVIEW}
           component={QuickView}
           options={{}}
+        />
+        <RootStack.Screen
+          name={RootScreens.FAVORITE}
+          component={FavoriteContainer}
+        />
+        <RootStack.Screen
+          name={RootScreens.DEFAULT_SETTINGS}
+          component={DefaultSettingsContainer}
         />
       </RootStack.Navigator>
     </NavigationContainer>
