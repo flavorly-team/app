@@ -24,7 +24,7 @@ export const Settings = (props: {
         </View>
         <View style={styles.wrapper}>
           <View style={styles.settingsGroupContainer}>
-            <Text style={styles.settingTypeName}>Đề xuất mặc định</Text>
+            <Text style={styles.settingTypeName}>Default Settings</Text>
             <TouchableOpacity
               style={styles.settingBtn}
               onPress={() =>
@@ -33,7 +33,7 @@ export const Settings = (props: {
                 })
               }
             >
-              <Text style={styles.settingName}>Phong cách ẩm thực</Text>
+              <Text style={styles.settingName}>Cuisine</Text>
               <Icon name="right" size={16} />
             </TouchableOpacity>
             <TouchableOpacity
@@ -44,7 +44,7 @@ export const Settings = (props: {
                 })
               }
             >
-              <Text style={styles.settingName}>Bữa ăn</Text>
+              <Text style={styles.settingName}>Meal</Text>
               <Icon name="right" size={16} />
             </TouchableOpacity>
             <TouchableOpacity
@@ -55,15 +55,15 @@ export const Settings = (props: {
                 })
               }
             >
-              <Text style={styles.settingName}>Chế độ dinh dưỡng</Text>
+              <Text style={styles.settingName}>Eating Diet</Text>
               <Icon name="right" size={16} />
             </TouchableOpacity>
           </View>
           <View style={styles.divider}></View>
           <View style={styles.settingsGroupContainer}>
-            <Text style={styles.settingTypeName}>Khác</Text>
+            <Text style={styles.settingTypeName}>Other</Text>
             <View style={styles.settingBtn}>
-              <Text style={styles.settingName}>Thông báo đẩy</Text>
+              <Text style={styles.settingName}>Push notification</Text>
               <Switch
                 value={pushNoti}
                 onValueChange={togglePushNoti}

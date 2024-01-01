@@ -1,14 +1,14 @@
 export const settings = {
   "cuisine-styles": {
-    name: "Phong cách ẩm thực",
-    options: ["Âu Mỹ", "Việt Nam", "Nhật", "Hàn"],
+    name: "Cuisine",
+    options: ["European", "Vietnam", "Japan", "Korea"],
   },
   meals: {
-    name: "Bữa ăn",
-    options: ["Sáng", "Trưa", "Tối"],
+    name: "Meal",
+    options: ["Morning", "Afternoon", "Evening"],
   },
   diets: {
-    name: "Chế độ dinh dưỡng",
-    options: ["Cơ bản", "Ít tinh bột", "Keto", "Paleo", "Vegetarian", "Vegan"],
+    name: "Eating Diet",
+    options: ["Normal", "Low-carb", "Keto", "Paleo", "Vegetarian", "Vegan"],
   },
 };
