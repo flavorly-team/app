@@ -23,7 +23,7 @@ import { DATA, CategoryData, pins } from "@/data/pins";
 import MasonryList from "@/Components/MasonryList";
 import { RootScreens } from "..";
 import { useNavigation } from "@react-navigation/native";
-
+import recipeList from "@/data/recipe";
 export interface IHomeProps {
   data: User | undefined;
   isLoading: boolean;
@@ -145,7 +145,6 @@ export const Home = () => {
   const renderItem = ({ item }: { item: CategoryData }) => {
     const color = item.id === selectedId ? "#DCA85C" : "#455A64";
     const fontFamily = item.id === selectedId ? "Bold" : "Regular";
-
     return (
       <Item
         item={item}
@@ -372,7 +371,7 @@ export const Home = () => {
           extraData={selectedId}
           style={{}}
         />
-        <MasonryList pins={pins} />
+        <MasonryList pins={recipeList} />
       </Box>
       <IconButton
         onPress={() => setModalVisible(true)}
