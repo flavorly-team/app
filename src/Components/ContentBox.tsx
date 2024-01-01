@@ -1,51 +1,58 @@
-import { StyleSheet, View, Text, Linking, Image } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+
+type Equipments = {
+  id: string;
+  name: string;
+  localizedName: string;
+  image: string;
+};
 
 export const ContentBox = ({ data, showTools, showInstructions }) => {
-  const equipments = data.analyzedInstructions.equipment;
-  const steps = data.analyzedInstructions.steps;
+  const steps = data.analyzedInstructions[0].steps;
+  let combinedEquipment: Equipments[] = steps.reduce((acc, step) => {
+    return [...acc, ...step.equipment];
+  }, []);
+  let uniqueIds = new Set();
+  let equipments: Equipments[] = [];
+  combinedEquipment.forEach((obj) => {
+    if (!uniqueIds.has(obj.id)) {
+      uniqueIds.add(obj.id);
+      equipments.push(obj);
+    }
+  });
 
   if (showTools)
     return (
-      <View style={styles.container}>
-        {equipments ? (
-          equipments.map((item) => (
-            <View key={item.id} style={styles.description}>
-              <>
-                <Text style={styles.bullet}>&bull;</Text>
-                <Text style={styles.description}>{item.name}</Text>
-              </>
-            </View>
-          ))
-        ) : (
-          <Text
-            style={{ color: "blue" }}
-            onPress={() => Linking.openURL(data.sourceUrl)}
-          >
-            {`Read the detailed instructions on ${data.sourceName}`}
-          </Text>
+      <>
+        {equipments.length > 0 && (
+          <View style={styles.container}>
+            {equipments.map((item) => (
+              <View key={item.id} style={styles.description}>
+                <>
+                  <Text style={styles.bullet}>&bull;</Text>
+                  <Text style={styles.description}>{item.name}</Text>
+                </>
+              </View>
+            ))}
+          </View>
         )}
-      </View>
+      </>
     );
 
   if (showInstructions)
     return (
-      <View style={styles.container}>
-        {steps ? (
-          steps.map((item) => (
-            <View key={item.number}>
-              <Text style={styles.title}>{`Step ${item.number}`}</Text>
-              <Text style={styles.description}>{item.step}</Text>
-            </View>
-          ))
-        ) : (
-          <Text
-            style={{ color: "blue" }}
-            onPress={() => Linking.openURL(data.sourceUrl)}
-          >
-            {`Read the detailed instructions on ${data.sourceName}`}
-          </Text>
+      <>
+        {steps && (
+          <View style={styles.container}>
+            {steps.map((item) => (
+              <View key={item.number}>
+                <Text style={styles.title}>{`Step ${item.number}`}</Text>
+                <Text style={styles.description}>{item.step}</Text>
+              </View>
+            ))}
+          </View>
         )}
-      </View>
+      </>
     );
 };
 const styles = StyleSheet.create({

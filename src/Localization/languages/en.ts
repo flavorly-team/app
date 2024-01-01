@@ -30,5 +30,5 @@ export const en = {
   [LocalizationKey.SETTINGS]: "Settings",
   [LocalizationKey.TAB1]: "Tools",
   [LocalizationKey.TAB2]: "Ingredients",
-  [LocalizationKey.TAB3]: "More details",
+  [LocalizationKey.TAB3]: "Instructions",
 };

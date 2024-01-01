@@ -28,5 +28,5 @@ export enum LocalizationKey {
   SETTINGS = "settings",
   TAB1 = 'tools',
   TAB2 = 'ingredients',
-  TAB3 = 'more'
+  TAB3 = 'instructions'
 }

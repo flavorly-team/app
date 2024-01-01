@@ -5,6 +5,7 @@ import {
   Dimensions,
   TouchableOpacity,
   SafeAreaView,
+  Linking,
 } from "react-native";
 import {
   Box,
@@ -143,6 +144,14 @@ const PinScreen = ({ route, navigation }: PinScreenScreenNavigatorProps) => {
               <Text fontFamily="Bold">{`${data.servings} servings`}</Text>
             </View>
             <TabBar tabs={tabs} onTabChange={handleTabChange} />
+            <View style={[styles.container, { marginBottom: 10 }]}>
+              <Text
+                style={{ color: "blue" }}
+                onPress={() => Linking.openURL(data.sourceUrl)}
+              >
+                {`Read the detailed instructions on ${data.sourceName}`}
+              </Text>
+            </View>
             {renderContent(selectedTab)}
           </VStack>
         </ScrollView>
@@ -211,6 +220,14 @@ const styles = StyleSheet.create({
     left: 14,
     top: 20,
     padding: 2,
+  },
+  container: {
+    flex: 1,
+    borderColor: "#E0E0E0",
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 12,
+    rowGap: 12,
   },
 });
 
