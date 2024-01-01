@@ -1,4 +1,5 @@
 interface InstructionType {
+    id: number;
     title: string;
     description: string;
 }
@@ -8,10 +9,10 @@ interface IngredientType {
     num: string;
     checked?: Boolean;
 }
-interface IngredientList {
+export type IngredientList = {
     id: number;
     title: string;
-    item: IngredientType[];
+    items: IngredientType[];
 }
 interface ToolType {
     description: string;
@@ -42,19 +43,32 @@ const recipeList: RecipeType[] = [
         },
         instruction: [
             {
+                id: 1,
                 title: "Bước 1",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
             {
+                id: 2,
                 title: "Bước 2",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
+            {
+                id: 3,
+                title: "Bước 3",
+                description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
+            },
+            {
+                id: 4,
+                title: "Bước 4",
+                description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
+            },
+
         ],
         ingredient : [
             {
                 id: 1,
                 title: "Gia vị tạo mùi",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -79,7 +93,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 2,
                 title: "Gia vị nêm",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -122,19 +136,32 @@ const recipeList: RecipeType[] = [
         },
         instruction: [
             {
+                id: 1,
                 title: "Bước 1",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
             {
+                id: 2,
                 title: "Bước 2",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
+            {
+                id: 3,
+                title: "Bước 3",
+                description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
+            },
+            {
+                id: 4,
+                title: "Bước 4",
+                description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
+            },
+
         ],
         ingredient : [
             {
                 id: 1,
                 title: "Gia vị tạo mùi",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -159,7 +186,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 2,
                 title: "Gia vị nêm",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -202,10 +229,12 @@ const recipeList: RecipeType[] = [
         },
         instruction: [
             {
+                id: 1,
                 title: "Bước 1",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
             {
+                id: 2,
                 title: "Bước 2",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
@@ -214,7 +243,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 1,
                 title: "Gia vị tạo mùi",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -239,7 +268,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 2,
                 title: "Gia vị nêm",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -282,10 +311,12 @@ const recipeList: RecipeType[] = [
         },
         instruction: [
             {
+                id: 1,
                 title: "Bước 1",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
             {
+                id: 2,
                 title: "Bước 2",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
@@ -294,7 +325,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 1,
                 title: "Gia vị tạo mùi",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -319,7 +350,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 2,
                 title: "Gia vị nêm",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -362,10 +393,12 @@ const recipeList: RecipeType[] = [
         },
         instruction: [
             {
+                id: 1,
                 title: "Bước 1",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
             {
+                id: 2,
                 title: "Bước 2",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
@@ -374,7 +407,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 1,
                 title: "Gia vị tạo mùi",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -399,7 +432,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 2,
                 title: "Gia vị nêm",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -442,10 +475,12 @@ const recipeList: RecipeType[] = [
         },
         instruction: [
             {
+                id: 1,
                 title: "Bước 1",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
             {
+                id: 2,
                 title: "Bước 2",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
@@ -454,7 +489,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 1,
                 title: "Gia vị tạo mùi",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -479,7 +514,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 2,
                 title: "Gia vị nêm",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -522,10 +557,12 @@ const recipeList: RecipeType[] = [
         },
         instruction: [
             {
+                id: 1,
                 title: "Bước 1",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
             {
+                id: 2,
                 title: "Bước 2",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
@@ -534,7 +571,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 1,
                 title: "Gia vị tạo mùi",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -559,7 +596,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 2,
                 title: "Gia vị nêm",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -602,10 +639,12 @@ const recipeList: RecipeType[] = [
         },
         instruction: [
             {
+                id: 1,
                 title: "Bước 1",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
             {
+                id: 2,
                 title: "Bước 2",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
@@ -614,7 +653,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 1,
                 title: "Gia vị tạo mùi",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -639,7 +678,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 2,
                 title: "Gia vị nêm",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -682,10 +721,12 @@ const recipeList: RecipeType[] = [
         },
         instruction: [
             {
+                id: 1,
                 title: "Bước 1",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
             {
+                id: 2,
                 title: "Bước 2",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
@@ -694,7 +735,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 1,
                 title: "Gia vị tạo mùi",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -719,7 +760,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 2,
                 title: "Gia vị nêm",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -762,10 +803,12 @@ const recipeList: RecipeType[] = [
         },
         instruction: [
             {
+                id: 1,
                 title: "Bước 1",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
             {
+                id: 2,
                 title: "Bước 2",
                 description: "Cá mú bóp muối rửa sạch, cắt khúc vừa ăn. Măng rửa qua, ngâm nước 30 phút để loại bỏ chất độc, xả lại nhiều lần, để ráo. Cà chua cắt múi cau một nửa, còn lại cắt hạt lựu nhỏ. Bò viên cắt vừa ăn nếu là loại lớn",
             },
@@ -774,7 +817,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 1,
                 title: "Gia vị tạo mùi",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
@@ -799,7 +842,7 @@ const recipeList: RecipeType[] = [
             {
                 id: 2,
                 title: "Gia vị nêm",
-                item: [
+                items: [
                     {
                         name: "Gia vị lẩu thái",
                         num: "1 gói",
