@@ -1,3 +1,4 @@
+import { LocalizationKey, i18n } from "@/Localization";
 import { ImageSourcePropType } from "react-native";
 
 export type OnboardingItemType = {
@@ -27,25 +28,25 @@ export default [
   },
   {
     id: 1,
-    title: "Nhận diện dễ dàng",
-    description: "Nhập nhanh tất cả nguyên liệu\nchỉ trong vài giây",
+    title: i18n.t(LocalizationKey.ON1_QUOTE),
+    description: i18n.t(LocalizationKey.ON1_SUBQUOTE),
     illustrator: require("../../../assets/images/scan.png"),
     backgroundColor: "#DF7861",
     indicatorColor: "#E64723",
   },
   {
     id: 2,
-    title: "Đề xuất đa dạng",
+    title: i18n.t(LocalizationKey.ON2_QUOTE),
     description:
-      "Nhanh chóng - dinh dưỡng - tiện lợi\nBạn cần gì, Flavorly đều có hết",
+      i18n.t(LocalizationKey.ON2_SUBQUOTE),
     illustrator: require("../../../assets/images/recommend.png"),
     backgroundColor: "#ECB390",
     indicatorColor: "#E77B39",
   },
   {
     id: 3,
-    title: "Cùng Flavorly nấu thôi!",
-    description: "Chọn công thức bạn yêu thích nhất\nFlavorly đã sẵn sàng!",
+    title: i18n.t(LocalizationKey.ON3_QUOTE),
+    description: i18n.t(LocalizationKey.ON3_SUBQUOTE),
     illustrator: require("../../../assets/images/cook.png"),
     backgroundColor: "#94B49F",
     indicatorColor: "#4E785C",

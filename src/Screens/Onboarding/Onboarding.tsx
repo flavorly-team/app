@@ -17,6 +17,7 @@ import { Paginator } from "./components/Paginator";
 import { ArrowForwardIcon } from "native-base";
 import { WelcomeItem } from "./components/WelcomItem";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { LocalizationKey, i18n } from "@/Localization";
 
 export const Onboarding = (props: {
   onNavigate: (string: RootScreens) => void;
@@ -104,8 +105,8 @@ export const Onboarding = (props: {
               ]}
             >
               {currentIndex === slides.length - 1
-                ? "Bắt đầu với Flavorly"
-                : "Tiếp theo"}
+                ? i18n.t(LocalizationKey.GO_HOME_NOW)
+                : i18n.t(LocalizationKey.NEXT)}
             </Text>
           </TouchableOpacity>
         </View>
@@ -121,7 +122,7 @@ export const Onboarding = (props: {
                   isFirstItem() && styles.buttonStartInWelcomeText,
                 ]}
               >
-                Hoặc bắt đầu với Flavorly ngay!
+                {i18n.t(LocalizationKey.GO_HOME_NOW)}
               </Text>
             </View>
             <ArrowForwardIcon
@@ -165,6 +166,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: "Bold",
     fontSize: 13,
+    marginRight: 10,
   },
   buttonStart: {
     flexDirection: "row",
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   buttonStartTextWrapper: {
-    width: 205,
+    // width: 205,
     justifyContent: "center",
     alignItems: "center",
   },
