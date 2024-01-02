@@ -3,7 +3,6 @@ import { Box, Modal } from "native-base";
 import { useState } from "react";
 import {
   FlatList,
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
@@ -15,6 +14,8 @@ import { IngredientCard } from "./IngredientCard";
 import { NoSearchFound } from "./NoSearchFound";
 import { SearchItem } from "./SearchItem";
 import { Ingredient } from "@/Screens/Result - OLD/Result";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 
 type Props = {
   ingredients: Array<Ingredient>;

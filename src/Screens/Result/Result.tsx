@@ -1,6 +1,7 @@
 import { LocalizationKey, i18n } from "@/Localization";
 import { RootScreens } from "..";
-import { StyleSheet, View, SafeAreaView } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { GoBackBtn } from "@/Components/GoBackBtn";
 import { AntDesign } from "@expo/vector-icons";
 import { useEffect, useState } from "react";

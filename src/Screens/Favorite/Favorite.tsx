@@ -5,9 +5,9 @@ import {
   StyleSheet,
   Dimensions,
   FlatList,
-  SafeAreaView,
   ActivityIndicator,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { HStack, Spinner, Heading, Box, Text } from "native-base";
 import { User } from "@/Services";

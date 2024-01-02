@@ -7,8 +7,8 @@ import {
   Dimensions,
   StyleProp,
   ViewStyle,
-  SafeAreaView,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Box, Text, Input, Icon } from "native-base";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MasonryList from "@/Components/MasonryList";

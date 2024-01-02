@@ -1,5 +1,5 @@
 import { LocalizationKey, i18n } from "@/Localization";
-import { StyleSheet, View, SafeAreaView, Image } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import { GoBackBtn } from "@/Components/GoBackBtn";
 import { useEffect, useState } from "react";
 import { Button } from "@/Components/Button";
@@ -8,6 +8,7 @@ import { searchRecipeByIngredients } from "@/Services";
 import { EvilIcons } from "@expo/vector-icons";
 import { RootScreens } from "..";
 import { NoSearchFound } from "@/Components/NoSearchFound";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const QuickView = ({ route, navigation }) => {
   const { items } = route.params;
