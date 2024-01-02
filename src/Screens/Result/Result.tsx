@@ -1,6 +1,6 @@
 import { LocalizationKey, i18n } from "@/Localization";
 import { RootScreens } from "..";
-import { StyleSheet, View, SafeAreaView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { GoBackBtn } from "@/Components/GoBackBtn";
 import { AntDesign } from "@expo/vector-icons";
 import { useState } from "react";
@@ -9,6 +9,7 @@ import { Box, Icon, Input, ScrollView, Text, VStack } from "native-base";
 import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "@/Navigation";
 import { NoSearchFound } from "@/Components/NoSearchFound";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const IngredientTag = ({ data, key }) => {
   return (

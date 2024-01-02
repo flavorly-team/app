@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Dimensions,
   FlatList,
-  SafeAreaView,
   ActivityIndicator,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
@@ -23,7 +22,7 @@ import { EmptyList } from "@/Components/EmptyList";
 import { RecipeType } from "@/data/recipe";
 import recipeList from "@/data/recipe";
 import { getCookingTime } from "@/Utils/getCookingTime";
-
+import { SafeAreaView } from "react-native-safe-area-context";
 const DATA = [
   {
     id: "1",

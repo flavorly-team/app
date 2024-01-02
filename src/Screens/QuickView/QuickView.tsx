@@ -2,10 +2,11 @@ import { LocalizationKey, i18n } from "@/Localization";
 import {
   StyleSheet,
   View,
-  SafeAreaView,
   Image,
   Dimensions,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import { GoBackBtn } from "@/Components/GoBackBtn";
 import { useEffect, useState } from "react";
 import { Button } from "@/Components/Button";

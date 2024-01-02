@@ -5,9 +5,9 @@ import {
   StyleSheet,
   View,
   Text,
-  SafeAreaView,
   FlatList,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { GoBackBtn } from "@/Components/GoBackBtn";
 import { Icon } from "@/Components/Icon";
 import { SearchBar } from "@/Components/SearchBar";

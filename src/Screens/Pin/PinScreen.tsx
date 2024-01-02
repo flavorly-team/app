@@ -4,9 +4,10 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
-  SafeAreaView,
   Pressable,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import { Box, VStack, ScrollView, Text } from "native-base";
 import { useEffect, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";

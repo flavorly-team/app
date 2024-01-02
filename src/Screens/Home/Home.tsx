@@ -12,9 +12,9 @@ import {
   Image,
   StyleProp,
   ViewStyle,
-  SafeAreaView,
   ActivityIndicator,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { HStack, Spinner, Heading, Box, Text, Input, Icon } from "native-base";
 import { detectFood, uploadIbb, User } from "@/Services";
 import Ionicons from "@expo/vector-icons/Ionicons";
