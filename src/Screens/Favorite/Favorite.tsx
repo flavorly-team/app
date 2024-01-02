@@ -22,25 +22,28 @@ import { EmptyList } from "@/Components/EmptyList";
 
 const DATA = [
   {
-    id: 1,
-    name: "Apple Juice",
+    id: 639177,
+    name: "Chocolate Pudding - Rave Diet",
     cookingTime: "15 minutes",
-    image:
-      "https://8thwondertea.com/cdn/shop/articles/custom_resized_175073ac-3882-473d-9cc7-b98eebd67d13.jpg?v=1678563564",
+    image: "https://spoonacular.com/recipeImages/639177-312x231.jpg",
   },
   {
-    id: 2,
-    name: "Thai Hot Pot",
+    id: 643450,
+    name: "Raw Vegan Chocolate and Raspberry Cake",
     cookingTime: "45 minutes",
-    image:
-      "https://i-giadinh.vnecdn.net/2022/12/17/Thanh-pham-1-1-5372-1671269525.jpg",
+    image: "https://spoonacular.com/recipeImages/658007-312x231.jpg",
   },
   {
-    id: 3,
-    name: "Bún bò Huế",
+    id: 632639,
+    name: "Applesauce Carrot Cake Muffins",
+    cookingTime: "25 minutes",
+    image: "https://spoonacular.com/recipeImages/632639-312x231.jpg",
+  },
+  {
+    id: 715514,
+    name: "Rice Krispie Treats and Christmas",
     cookingTime: "60 minutes",
-    image:
-      "https://cdnphoto.dantri.com.vn/Q6Mat29SNVxGzhi3rVcjc3xDVcI=/thumb_w/1155/2022/04/28/thanh-pho-o-nhat-ban-them-dac-san-bun-bo-hue-cua-viet-nam-vao-thuc-dondocx-1651159044370.jpeg",
+    image: "https://spoonacular.com/recipeImages/715514-312x231.jpg",
   },
 ];
 type FoodCard = {
@@ -53,25 +56,26 @@ type FoodCard = {
 export const Favorite = (props: {
   onNavigate: (string: RootScreens, params) => void;
 }) => {
-  const [data, setData] = useState<Array<FoodCard> | null>(null);
+  const [data, setData] = useState<Array<FoodCard> | null>(DATA);
+  // const data = DATA
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const f = async () => {
-      setIsLoading(true);
-      const value = await AsyncStorage.getItem("@favorites");
-      if (value) {
-        setData(JSON.parse(value));
-        setSearchData(JSON.parse(value));
-        setIsLoading(false);
-      } else {
-        setData(DATA);
-        setSearchData(DATA);
-        setIsLoading(false);
-      }
-    };
-    f();
-  }, []);
+  // useEffect(() => {
+  //   const f = async () => {
+  //     setIsLoading(true);
+  //     const value = await AsyncStorage.getItem("@favorites");
+  //     if (value) {
+  //       setData(JSON.parse(value));
+  //       setSearchData(JSON.parse(value));
+  //       setIsLoading(false);
+  //     } else {
+  //       setData(DATA);
+  //       setSearchData(DATA);
+  //       setIsLoading(false);
+  //     }
+  //   };
+  //   f();
+  // }, []);
 
   const [searchData, setSearchData] = useState(data);
   const [searchTerm, setSearchTerm] = useState("");

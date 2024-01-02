@@ -3,20 +3,25 @@ import { RootScreens } from "..";
 import { StyleSheet, View, SafeAreaView } from "react-native";
 import { GoBackBtn } from "@/Components/GoBackBtn";
 import { AntDesign } from "@expo/vector-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/Components/Button";
 import { Box, Icon, Input, ScrollView, Text, VStack } from "native-base";
 import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "@/Navigation";
 import { NoSearchFound } from "@/Components/NoSearchFound";
 
-const IngredientTag = ({ data, key }) => {
+const IngredientTag = ({ data, key, removeIngredient }) => {
   return (
     <Box bg="white" borderRadius={5} h={20} mb={5} style={styles.tag}>
       <Text fontFamily="Regular" fontSize="md">
         {data}
       </Text>
-      <AntDesign name="close" size={24} color="lightgray" />
+      <AntDesign
+        name="close"
+        size={24}
+        color="lightgray"
+        onPress={removeIngredient}
+      />
     </Box>
   );
 };
@@ -26,14 +31,27 @@ export const Result = (props: {
   goBack: () => void;
   route: RouteProp<RootStackParamList, RootScreens.RESULT>;
 }) => {
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const handleSearch = (value: string) => {
-  //   setSearchTerm(value);
-  // };
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+  };
 
-  const handleSearchIngredient = () => {};
+  const [results, setResults] = useState(null);
+
+  const addIngredients = () => {
+    setResults([...results, searchTerm]);
+  };
+
+  const removeIngredient = (key) => {
+    setResults(results.filter((element) => element !== key));
+  };
 
   const { items } = props.route.params;
+
+  useEffect(() => {
+    console.log(items);
+    setResults(items);
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -45,6 +63,8 @@ export const Result = (props: {
           <GoBackBtn color="#DF7861" onPress={() => props.goBack()} />
         </View>
         <Input
+          value={searchTerm}
+          onChangeText={handleSearch}
           variant="rounded"
           placeholder={i18n.t(LocalizationKey.ADD_INGREDIENT)}
           borderColor="brand_green.500"
@@ -56,6 +76,7 @@ export const Result = (props: {
               size="5"
               color="gray.400"
               as={<AntDesign name="plus" size={24} />}
+              onPress={addIngredients}
             />
           }
         />
@@ -63,9 +84,15 @@ export const Result = (props: {
       <View style={styles.content}>
         <ScrollView>
           <VStack flex={1}>
-            {items.length > 0 ? (
-              items.map((key, index) => {
-                return <IngredientTag data={key} key={index} />;
+            {results && results.length > 0 ? (
+              results.map((key, index) => {
+                return (
+                  <IngredientTag
+                    data={key}
+                    key={index}
+                    removeIngredient={() => removeIngredient(key)}
+                  />
+                );
               })
             ) : (
               <NoSearchFound />
@@ -73,7 +100,7 @@ export const Result = (props: {
           </VStack>
         </ScrollView>
       </View>
-      {items.length > 0 && (
+      {results && results.length > 0 && (
         <Box pl={6} pr={6} style={styles.footer}>
           <Button
             name={i18n.t(LocalizationKey.GET_SUGGESTION)}
@@ -81,7 +108,7 @@ export const Result = (props: {
             color="#ffffff"
             bgColor="#94B49F"
             onPress={() =>
-              props.onNavigate(RootScreens.QUICKVIEW, { items: items })
+              props.onNavigate(RootScreens.QUICKVIEW, { items: results })
             }
           />
         </Box>

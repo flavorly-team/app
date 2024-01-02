@@ -25,7 +25,7 @@ export const FoodCard2: React.FC<Props> = ({
   onPress,
 }) => {
   return (
-    <Box pl={0.5} pr={1} mb={3}>
+    <Box pl={0.5} pr={1} mb={7}>
       <Pressable onPress={onPress}>
         <Image source={{ uri: image }} style={styles.image} />
         <View style={styles.content}>
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#263238",
     fontFamily: "Regular",
+    width: "80%"
   },
   cookingTime: {
     flexDirection: "row",
