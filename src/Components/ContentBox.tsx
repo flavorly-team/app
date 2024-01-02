@@ -9,9 +9,11 @@ type Equipments = {
 
 export const ContentBox = ({ data, showTools, showInstructions }) => {
   const steps = data.analyzedInstructions[0].steps;
-  let combinedEquipment: Equipments[] = steps.reduce((acc, step) => {
-    return [...acc, ...step.equipment];
-  }, []);
+  let combinedEquipment: Equipments[] = steps
+    ? steps.reduce((acc, step) => {
+        return [...acc, ...step.equipment];
+      }, [])
+    : [];
   let uniqueIds = new Set();
   let equipments: Equipments[] = [];
   combinedEquipment.forEach((obj) => {
